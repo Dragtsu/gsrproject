@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/AplicacionMerp">
-    <Resource name="jdbc/sqlite"
+    <Resource name="jdbc/sqlite"    
+    type="javax.sql.DataSource"
     factory="com.zaxxer.hikari.HikariJNDIFactory"
     maxTotal="3"
     maxIdle="3"
-    type="javax.sql.DataSource"
     driverClassName="org.sqlite.JDBC"
     defaultAutoCommit="false"
     jdbcUrl="jdbc:sqlite:/home/dragneel/dbase.db"

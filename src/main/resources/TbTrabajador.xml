@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="TbTrabajador">
+  
+    <resultMap id="TrabajadorMap" type="com.data.models.TbTrabajador">
+        <result property="Num_Celular" column="Num_Celular" jdbcType="VARCHAR" />
+        <result property="Nombre" column="Nombre" jdbcType="VARCHAR" />
+        <result property="Apellido_Paterno" column="Apellido_Paterno" jdbcType="VARCHAR" />
+        <result property="Apellido_Materno" column="Apellido_Materno" jdbcType="VARCHAR" />
+        <result property="Vigencia_Licencia" column="Vigencia_Licencia"  jdbcType="VARCHAR"/>
+    </resultMap>
+  
+    <select id="getAll" parameterType="String" resultMap="TrabajadorMap">
+        SELECT * FROM trabajador where Num_Celular like #{Num_Celular}||'%'
+    </select>
+    <insert id="insert" parameterType="com.data.models.TbTrabajador">
+        INSERT INTO trabajador (Num_Celular, Nombre, Apellido_Paterno,Apellido_Materno,Vigencia_Licencia)
+        VALUES (#{Num_Celular,}, #{Nombre,}, #{Apellido_Paterno}, #{Apellido_Materno}, #{Vigencia_Licencia});
+    </insert>
+    <delete id="deleteById" parameterType="String">
+        DELETE from trabajador WHERE Num_Celular = #{Num_Celular};
+    </delete>   
+    <select id="getById" parameterType="String" resultType="com.data.models.TbTrabajador"  resultMap="TrabajadorMap">
+        SELECT * FROM trabajador WHERE Num_Celular = #{Num_Celular}
+    </select>
+    <update id="update" parameterType="com.data.models.TbTrabajador">
+        UPDATE trabajador
+        SET                      
+            Nombre = #{Nombre}, 
+            Apellido_Paterno = #{Apellido_Paterno},
+            Apellido_Materno = #{Apellido_Materno},
+            Vigencia_Licencia = #{Vigencia_Licencia}
+        WHERE Num_Celular = #{Num_Celular};
+    </update>
+    
+  
+  
+  </mapper>

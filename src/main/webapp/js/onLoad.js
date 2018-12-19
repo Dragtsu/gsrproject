@@ -1,7 +1,14 @@
 function limpiaFormulario() {
-    $("form input:text").val("");   
-    $("#sDescripcion").val("");
-    $("#sSearch").val("");
+    //$("form input:text").not($(".notclean")).val("");   
+   // $("#sDescripcion").val("");
+    //$("#sSearch").val("");
+
+    $.each($("form input:text"), function (i, el) {
+        if($(this).hasClass(".notclean")){
+            alert("true");
+            
+        }
+    });
 }
 
 //limpiaFormulario();

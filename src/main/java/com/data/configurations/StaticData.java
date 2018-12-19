@@ -31,16 +31,25 @@ public class StaticData {
     public static final String WORK_EXIST = "Ya existe un trabajador con ese número de celular.";
     public static final String WORKER_FAIL = "Ocurrió un error al guardar los datos del trabajador.";
     public static final String WORKER_UDATE_OK = "Datos del trabajador modificados correctamente";
+    public static final String WORKER_DEL_OK="Trabajador eliminado correctamente.";
+    public static final String WORKER_DEL_FAIL="Ocurrio un error al eliminar los datos del trabajador.";  
+    
     public static final String UNIDAD_OK = "Unidad agregada";
     public static final String UNIDAD_EXIST = "Ya existe una Unidad con ese identificador";
     public static final String UNIDAD_FAIL = "Ocurrió un error al guaradar los datos de la unidad";
     public static final String UNIDAD_UPDATE_OK = "Datos de unidad modificados correctamente";
-    
-    
-    public static final String WORKER_DEL_OK="Trabajador eliminado correctamente.";
-    public static final String WORKER_DEL_FAIL="Ocurrio un error al eliminar los datos del trabajador.";    
     public static final String VEHICLE_DEL_OK="Datos del vehiculo eliminados correctamente.";
     public static final String VEHICLE_DEL_FAIL="Ocurrio un error al eliminar los datos del vehiculo.";
+    
+    
+    public static final String TMANTTO_OK = "Tipo de mantenimiento agregado";
+    public static final String TMANTTO_EXIST = "Ya existe ese tipo de mantenimiento.";
+    public static final String TMANTTO_FAIL = "Ocurrió un error al guardar los datos del tipo de mantenimiento.";
+    public static final String TMANTTO_UDATE_OK = "Datos del tipo de mantenimiento modificados correctamente";
+    public static final String TMANTTO_DEL_OK="Tipo de mantenimiento eliminado correctamente.";
+    public static final String TMANTTO_DEL_FAIL="Ocurrio un error al eliminar los datos del tipo de mantenimiento.";  
+    
+    
     
     
     public synchronized static void enviaJsonServerSide(HttpServletResponse response, JSONObject JSON) {

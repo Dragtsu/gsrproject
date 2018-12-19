@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.data.models.TbTipoMantenimiento">
+<mapper namespace="TbTipoMantenimiento">
   
     <resultMap id="TipoMantenimientoMap" type="com.data.models.TbTipoMantenimiento">
         <result property="id_tipo_mantenimiento" column="id_tipo_mantenimiento" jdbcType="INTEGER" />
@@ -14,17 +14,17 @@
         SELECT * FROM tipo_mantenimiento where id_tipo_mantenimiento like #{id_tipo_mantenimiento}||'%'
     </select>
     <insert id="insert" parameterType="com.data.models.TbTipoMantenimiento">
-        INSERT INTO vehiculo (  tipo_mantenimiento, sDescripcion )
+        INSERT INTO tipo_mantenimiento (  tipo_mantenimiento, sDescripcion )
         VALUES (#{tipo_mantenimiento}, #{sDescripcion});
     </insert>
-    <delete id="deleteById" parameterType="String">
-        DELETE from vehiculo WHERE id_tipo_mantenimiento = #{id_tipo_mantenimiento};
+    <delete id="deleteById" parameterType="Integer">
+        DELETE from tipo_mantenimiento WHERE id_tipo_mantenimiento = #{id_tipo_mantenimiento};
     </delete>   
-    <select id="getById" parameterType="String" resultType="com.data.models.TbTipoMantenimiento"  resultMap="TipoMantenimientoMap">
-        SELECT * FROM vehiculo WHERE id_tipo_mantenimiento = #{id_tipo_mantenimiento}
+    <select id="getById" parameterType="Integer" resultType="com.data.models.TbTipoMantenimiento"  resultMap="TipoMantenimientoMap">
+        SELECT * FROM tipo_mantenimiento WHERE id_tipo_mantenimiento = #{id_tipo_mantenimiento}
     </select>
     <update id="update" parameterType="com.data.models.TbTipoMantenimiento">
-        UPDATE vehiculo
+        UPDATE tipo_mantenimiento
         SET                            
             tipo_mantenimiento = #{tipo_mantenimiento},
             sDescripcion = #{sDescripcion}

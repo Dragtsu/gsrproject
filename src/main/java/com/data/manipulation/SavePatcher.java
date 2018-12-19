@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 import static com.data.configurations.StaticData.*;
+import com.data.models.TbTipoMantenimiento;
 import com.data.models.TbUnidad;
 
 /**
@@ -37,6 +38,7 @@ public class SavePatcher extends HttpServlet {
             throws ServletException, IOException {
 
         String paramValue = request.getParameter("table");
+        System.out.println("***************** ACTION ************* >>>  "+request.getParameter("action"));
         boolean save = request.getParameter("action").equals("save");
 
         if (paramValue.equals(TRABAJADOR)) {
@@ -45,6 +47,10 @@ public class SavePatcher extends HttpServlet {
         } else if (paramValue.equals(UNIDAD)) {
 
             enviaJsonServerSide(response, toSaveVehicle(request,save));
+        }
+         else if (paramValue.equals(TIPO_MANTENIMIENTO)) {
+
+            enviaJsonServerSide(response, toSaveMantoType(request,save));
         }
     }
 
@@ -114,6 +120,38 @@ public class SavePatcher extends HttpServlet {
 
         return js;
     }
+    
+    private JSONObject toSaveMantoType(HttpServletRequest request, boolean save) {
+
+        TbTipoMantenimiento tb = new TbTipoMantenimiento();
+
+        tb.setTipo_mantenimiento(request.getParameter("tipo_mantenimiento"));
+        tb.setsDescripcion(request.getParameter("sDescripcion"));
+
+        JSONObject js = new JSONObject();
+
+        int status;
+
+        if (request.getParameter("action").equals("save")) {
+            status = new DataAcces().insert(tb, "TbTipoMantenimiento");
+        } else {
+            tb.setId_tipo_mantenimiento(request.getParameter("id_tipo_mantenimiento"));
+            status = new DataAcces().update(tb, "TbTipoMantenimiento");
+        }
+
+        if (status == OPERACION_EXITOSA && save) {
+            js.put("mensaje", TMANTTO_OK);
+        } else if (status == OPERACION_EXITOSA) {
+            js.put("mensaje", TMANTTO_UDATE_OK);
+        } else if (status == REGISTRO_EXISTE) {
+            js.put("mensaje", TMANTTO_EXIST);
+        } else if (status == ERROR_GENERAL) {
+            js.put("mensaje", TMANTTO_FAIL);
+        }
+
+        return js;
+    }
+
 
   
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

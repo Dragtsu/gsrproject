@@ -98,7 +98,7 @@ public class DataAcces {
         try {
             list = (ArrayList) session.selectList( tablaConsultar+".getAll",like );
         } catch (Exception e) {
-            logger.error(e.toString());
+           System.out.println(e.toString());
         } finally {
             session.close();
         }

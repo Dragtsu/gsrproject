@@ -31,9 +31,10 @@
                 border-bottom: none;                
             }
             legend{
-                width:inherit; /* Or auto */
-                padding:0 10px; /* To give a bit of padding on the left and right */
+                width:inherit; 
+                padding:0 10px; 
                 border-bottom:none;
+                font-size: 12pt;
             }
             .adjust{
 
@@ -98,6 +99,7 @@
 
             <ul class="list-unstyled components">
                 <p></p>
+                
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Unidad</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -105,7 +107,7 @@
                             <a id="vehicle" class="link" href="#">Unidades</a>
                         </li>
                         <li>
-                            <a id="mantos" href="#">Programas de Mantenimiento</a>
+                            <a id="Mantenimiento" class="link" href="#">Programas de Mantenimiento</a>
                         </li>  
                         <li>
                             <a id="tManto" class="link" href="#">Tipos Mantenimiento</a>
@@ -114,7 +116,13 @@
                 </li>
                 <li>
                     <a id="worker" class="link" href="#">Trabajador</a>                    
-                </li>                
+                </li>   
+                <li>
+                    <a id="AlertasProgramas" class="link" href="#">Alertas de programas</a>                    
+                </li> 
+                <li>
+                    <a id="SalidaCampo" class="link" href="#">Salidas a Campo</a>                    
+                </li> 
             </ul>          
         </nav>
 

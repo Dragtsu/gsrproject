@@ -6,6 +6,7 @@
 package com.data.manipulation;
 
 import static com.data.configurations.StaticData.*;
+import com.data.models.TbTipoMantenimiento;
 import com.data.models.TbTrabajador;
 import com.data.models.TbUnidad;
 import java.io.IOException;
@@ -51,6 +52,10 @@ public class DelPatcher extends HttpServlet {
 
             enviaJsonServerSide(response, toDelVehicle(request));
         }
+        else if (paramTable.equals(TIPO_MANTENIMIENTO)) {
+
+            enviaJsonServerSide(response, toDelTMantto(request));
+        }
     }
 
     private JSONObject toDelWorker(HttpServletRequest request) {
@@ -66,6 +71,23 @@ public class DelPatcher extends HttpServlet {
             js.put("mensaje", WORKER_DEL_OK);
         else 
             js.put("mensaje", WORKER_DEL_FAIL);
+
+        return js;
+    }
+    
+    private JSONObject toDelTMantto(HttpServletRequest request) {
+System.out.println("To del MAnto"+request.getParameter("value"));
+        TbTipoMantenimiento tb = new TbTipoMantenimiento();        
+        tb.setId_tipo_mantenimiento(request.getParameter("value"));     
+
+        JSONObject js = new JSONObject();
+
+        int status = new DataAcces().delete(tb,"TbTipoMantenimiento");        
+
+        if (status == OPERACION_EXITOSA) 
+            js.put("mensaje", TMANTTO_DEL_OK);
+        else 
+            js.put("mensaje", TMANTTO_DEL_FAIL);        
 
         return js;
     }

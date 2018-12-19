@@ -1,17 +1,21 @@
-<h2 id="Titulo">Tipo de Mantenimiento</h2>
+<h2 id="Titulo">Programas de Mantenimiento</h2>
 <div>
     <fieldset class="form-group">                        
 
         <form>
             <table>                                
-                <tr><td>Id tipo Mantenimiento:</td><td><input type="text" class="notclean" name="id_tipo_mantenimiento"  value="TM" readOnly></td></tr>
-                <tr><td>Tipo Mantenimiento:</td><td><input type="text" name="tipo_mantenimiento" maxlength="25"></td></tr>
-                <tr><td>Descripcion:</td><td><textarea name="sDescripcion" id="sDescripcion" maxlength="100"></textarea></td></tr>
+                <tr><td>Id unidad:</td><td><input type="text" name="id_unidad" readOnly ></td><td><input type="button" id="cat_id_unidad" value="Seleccionar"/></td></tr>
+                <tr><td>Tipo Mantenimiento:</td><td><input type="text" name="id_tipo_mantenimiento" maxlength="25"></td><td><input type="button" id="cat_id_unidad" value="Seleccionar"/></td></tr>
+                <tr><td>Descripcion:</td><td><textarea name="sDescripcion" id="sDescripcion" maxlength="100"></textarea></td><td></td></tr>
+                <tr><td>Fecha programada Mantenimiento:</td><td><input type="text" name="fMantenimiento" id="sDescripcion" maxlength="10" readOnly class="datepicker"></td><td></td></tr>
+                <tr><td>Costo total:</td><td><input name="nCosto"></td><td></td></tr>
+                <tr><td>Realizado:</td><td><input type="checkbox" name="mantoRealizado" ></td><td></td></tr>
+
             </table>
 
             <div class="adjust">
                 <fieldset>
-                    <input type="hidden" name="table" value="tManto" id="tableShow">  
+                    <input type="hidden" name="table" value="Mantenimiento" id="tableShow">  
                     <input type="hidden" name="action" value="save" id="action"> 
                     <input type="button" id="save" value="Guardar"/>
                     <input type="button" id="limpiar" value="Limpiar"/>
@@ -34,9 +38,12 @@
     </div>                    
     <table class="display dataTablex">
         <thead>
-        <th>Id Matenimiento</th>
+        <th>Id unidad</th>
         <th>Tipo Mantenimiento</th>
-        <th>Descripcion</th>        
+        <th>Descripcion</th>  
+        <th>Fecha programada Mantenimiento</th>  
+        <th>Costo total</th>  
+        <th>Realizado</th>  
         </thead>               
         <tbody></tbody>
     </table>                    

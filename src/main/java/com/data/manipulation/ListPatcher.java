@@ -58,7 +58,7 @@ public class ListPatcher extends HttpServlet {
             tablaConsultar="TbUnidad";
         }
         else if (tablaConsultar.equals(TIPO_MANTENIMIENTO)) {
-            
+            System.out.println("********** Consultando table tipo mantenimiento");
             tablaConsultar="TbTipoMantenimiento";
         }
 
@@ -79,18 +79,13 @@ public class ListPatcher extends HttpServlet {
         else if(table.equals("TbUnidad"))
             Return=((TbUnidad)obj).toArray();
         else if(table.equals("TbTipoMantenimiento"))
-            Return=((TbTipoMantenimiento)obj).toArray();
-            
-        for(int i=0;i<Return.length;i++)
-            System.out.print(" ["+Return[i]+"]");
-        System.out.println();
+            Return=((TbTipoMantenimiento)obj).toArray(); 
         
         return Return;
     }
 
     private JSONObject getTableJson(int iDisplayStart, int iDisplayLength, String like , String tablaConsultar) {
-        
-        System.out.println("Like********" +like);
+               
 
         ArrayList<Object> tb = new DataAcces().read(like,tablaConsultar);
       

@@ -6,34 +6,30 @@
 <mapper namespace="TbUnidad">
   
     <resultMap id="UnidadMap" type="com.data.models.TbUnidad">
-        <result property="id_vehiculo" column="id_vehiculo" jdbcType="VARCHAR" />
-        <result property="sDescripcion" column="sDescripcion" jdbcType="VARCHAR" />        
-        <result property="fMantenimiento" column="fMantenimiento" jdbcType="VARCHAR" />
-        <result property="fVerificacion" column="fVerificacion" jdbcType="VARCHAR" />
-        <result property="fSeguro" column="fSeguro" jdbcType="VARCHAR" />
-        <result property="nCostoServicio" column="nCostoServicio"  jdbcType="DOUBLE"/>
+        <result property="id_unidad" column="id_unidad" jdbcType="VARCHAR" />
+        <result property="sNombre" column="sNombre" jdbcType="VARCHAR" />
+        <result property="sDescripcion" column="sDescripcion" jdbcType="VARCHAR" />          
+        <result property="unidad_disponible" column="unidad_disponible" jdbcType="INTEGER" />
     </resultMap>   
     <select id="getAll" parameterType="String" resultMap="UnidadMap">
-        SELECT * FROM vehiculo where id_vehiculo like #{id_vehiculo}||'%'
+        SELECT * FROM unidad where id_unidad like #{id_unidad}||'%'
     </select>
     <insert id="insert" parameterType="com.data.models.TbUnidad">
-        INSERT INTO vehiculo ( id_vehiculo , sDescripcion, fMantenimiento , fVerificacion, fSeguro , nCostoServicio )
-        VALUES (#{id_vehiculo},#{sDescripcion}, #{fMantenimiento}, #{fVerificacion}, #{fSeguro}, #{nCostoServicio});
+        INSERT INTO unidad ( id_unidad , sNombre, sDescripcion, unidad_disponible)
+        VALUES (#{id_unidad},#{sNombre,}, #{sDescripcion}, #{unidad_disponible});
     </insert>
     <delete id="deleteById" parameterType="String">
-        DELETE from vehiculo WHERE id_vehiculo = #{id_vehiculo};
+        DELETE from unidad WHERE id_unidad = #{id_unidad};
     </delete>   
     <select id="getById" parameterType="String" resultType="com.data.models.TbUnidad"  resultMap="UnidadMap">
-        SELECT * FROM vehiculo WHERE id_vehiculo = #{id_vehiculo}
+        SELECT * FROM unidad WHERE id_unidad = #{id_unidad}
     </select>
     <update id="update" parameterType="com.data.models.TbUnidad">
-        UPDATE vehiculo
+        UPDATE unidad
         SET                      
-            sDescripcion=#{sDescripcion},
-            fMantenimiento = #{fMantenimiento}, 
-            fVerificacion = #{fVerificacion},
-            fSeguro = #{fSeguro},
-            nCostoServicio = #{nCostoServicio}
-        WHERE id_vehiculo = #{id_vehiculo};
+            sNombre = #{sNombre}, 
+            sDescripcion = #{sDescripcion},
+            unidad_disponible = #{unidad_disponible}            
+        WHERE id_unidad = #{id_unidad};
     </update>  
   </mapper>

@@ -3,27 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.data.configurations;
+package com.data.manipulation;
 
-import java.io.BufferedReader;
+import com.data.configurations.StaticData;
+import static com.data.configurations.StaticData.TIPO_SERVICIO;
+import static com.data.configurations.StaticData.TRABAJADOR;
+import static com.data.configurations.StaticData.UNIDAD;
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import javax.servlet.ServletContext;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static com.data.configurations.StaticData.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 /**
  *
  * @author dragneel
  */
-@WebServlet(name = "Dispatcher", urlPatterns = {"/GetPage"})
-public class Dispatcher extends HttpServlet {
+@WebServlet(name = "Datatable", urlPatterns = {"/GetCatalog"})
+public class Datatable extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,29 +40,48 @@ public class Dispatcher extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         response.setContentType("text/html;charset=UTF-8");
+        String tablaConsultar = request.getParameter("table");
+        
+        System.out.println("********************** Tabla a consultar para el catalogo: "+tablaConsultar);
 
-        String filename = "";
-
-        if (!request.getParameter("table").trim().equals("")) {
-            
-            filename =  request.getParameter("table") + "Content.jsp";
-            ServletContext context = getServletContext();
-
-            InputStream is = context.getResourceAsStream(filename);
-            if (is != null) {
-                InputStreamReader isr = new InputStreamReader(is);
-                BufferedReader reader = new BufferedReader(isr);
-                PrintWriter writer = response.getWriter();
-                String text;
-
-                while ((text = reader.readLine()) != null) {
-                    writer.println(text);
-                }
-            }
-        } else {
-            response.getWriter().print("Error");
+        switch (tablaConsultar) {
+            case TRABAJADOR:
+                tablaConsultar = "TbTrabajador";
+                break;
+            case UNIDAD:
+                //tablaConsultar = "TbUnidad";                
+                break;
+            case TIPO_SERVICIO:
+                tablaConsultar = "TbServicios";
+                break;
+            default:
+                break;
         }
+
+        StaticData.enviaTextAjax(response, getHtml(tablaConsultar));
+
+        System.out.println("****************************Get html*****************************");
+
+    }
+
+    public String getHtml(String jsp) {
+
+        File input = new File( getServletContext().getRealPath("/") + jsp + "Content.jsp");
+        Document doc = null;
+
+        try {
+
+            doc = Jsoup.parse(input, "UTF-8");
+
+        } catch (IOException ex) {
+            Logger.getLogger(Datatable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Element link = doc.select("table.dataTablex").first();
+
+        return " <table class=\"display dataTablex\">" + link.html() + "</table>";
 
     }
 

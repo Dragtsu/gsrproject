@@ -1,17 +1,18 @@
-<h2 id="Titulo">Tipo de Mantenimiento</h2>
+<h2 id="Titulo">Listado de Servicios</h2>
 <div>
     <fieldset class="form-group">                        
 
         <form>
             <table>                                
-                <tr><td>Id tipo Mantenimiento:</td><td><input type="text" class="notclean" name="id_tipo_mantenimiento"  value="TM" readOnly></td></tr>
-                <tr><td>Tipo Mantenimiento:</td><td><input type="text" name="tipo_mantenimiento" maxlength="25"></td></tr>
+                <tr><td>Id Servicio:</td><td><input type="text" class="tm" name="id_servicio"  value="SM" readOnly></td></tr>
+                <tr><td>Nombre del Servicio:</td><td><input type="text" name="nombre_servicio" maxlength="30"></td></tr>
                 <tr><td>Descripcion:</td><td><textarea name="sDescripcion" id="sDescripcion" maxlength="100"></textarea></td></tr>
+                 <tr><td>Costo del Servicio:</td><td><input  type="text" name="nCostoServicio" class="input-money" maxlength="8"></td></tr>
             </table>
 
             <div class="adjust">
                 <fieldset>
-                    <input type="hidden" name="table" value="tManto" id="tableShow">  
+                    <input type="hidden" name="table" value="tServicios" id="tableShow">  
                     <input type="hidden" name="action" value="save" id="action"> 
                     <input type="button" id="save" value="Guardar"/>
                     <input type="button" id="limpiar" value="Limpiar"/>
@@ -34,11 +35,13 @@
     </div>                    
     <table class="display dataTablex">
         <thead>
-        <th>Id Matenimiento</th>
-        <th>Tipo Mantenimiento</th>
-        <th>Descripcion</th>        
+        <th>Id Servicio</th>
+        <th>Nombre del Servicio</th>
+        <th>Descripcion</th>  
+        <th>Costo del Servicio</th>    
         </thead>               
         <tbody></tbody>
     </table>                    
 </fieldset>
+
 <script src="js/onLoad.js" type="text/javascript"></script>

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import static com.data.configurations.StaticData.*;
-import com.data.models.TbTipoMantenimiento;
+import com.data.models.TbServicios;
 import com.data.models.TbUnidad;
 
 /**
@@ -44,22 +44,23 @@ public class ListPatcher extends HttpServlet {
 
         System.out.println("Buscando datos de: .. " + tablaConsultar);
 
-       /* System.out.println("iDisplayStart.. " + request.getParameter("iDisplayStart"));
+        /* System.out.println("iDisplayStart.. " + request.getParameter("iDisplayStart"));
         System.out.println("iTotalDisplayRecords.. " + request.getParameter("iTotalDisplayRecords"));
         System.out.println("iTotalRecords.. " + request.getParameter("iTotalRecords"));
         System.out.println("iDisplayLength.. " + request.getParameter("iDisplayLength"));*/
-
-        if (tablaConsultar.equals(TRABAJADOR)) {
-            
-            tablaConsultar="TbTrabajador";
-        }
-        else if (tablaConsultar.equals(UNIDAD)) {
-            
-            tablaConsultar="TbUnidad";
-        }
-        else if (tablaConsultar.equals(TIPO_MANTENIMIENTO)) {
-            System.out.println("********** Consultando table tipo mantenimiento");
-            tablaConsultar="TbTipoMantenimiento";
+        switch (tablaConsultar) {
+            case TRABAJADOR:
+                tablaConsultar="TbTrabajador";
+                break;
+            case UNIDAD:
+                tablaConsultar="TbUnidad";
+                break;
+            case TIPO_SERVICIO:
+                System.out.println("********** Consultando table tipo TIPO_SERVICIO");
+                tablaConsultar="TbServicios";
+                break;
+            default:
+                break;
         }
 
             enviaJsonServerSide(response, getTableJson(
@@ -78,8 +79,8 @@ public class ListPatcher extends HttpServlet {
             Return=((TbTrabajador)obj).toArray();
         else if(table.equals("TbUnidad"))
             Return=((TbUnidad)obj).toArray();
-        else if(table.equals("TbTipoMantenimiento"))
-            Return=((TbTipoMantenimiento)obj).toArray(); 
+        else if(table.equals("TbServicios"))
+            Return=((TbServicios)obj).toArray(); 
         
         return Return;
     }

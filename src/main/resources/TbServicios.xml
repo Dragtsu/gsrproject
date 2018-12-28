@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="TbServicios">
+  
+    <resultMap id="TipoServiciosMap" type="com.data.models.TbServicios">
+        <result property="id_servicio" column="id_servicio" jdbcType="INTEGER" />
+        <result property="nombre_servicio" column="nombre_servicio" jdbcType="VARCHAR" />
+        <result property="sDescripcion" column="sDescripcion" jdbcType="VARCHAR" />   
+        <result property="nCostoServicio" column="nCostoServicio" jdbcType="DOUBLE" />       
+    </resultMap>   
+    <select id="getAll" parameterType="String" resultMap="TipoServiciosMap">
+        SELECT * FROM servicios where id_servicio like #{id_servicio}||'%'
+    </select>
+    <insert id="insert" parameterType="com.data.models.TbServicios">
+        INSERT INTO servicios (  nombre_servicio , sDescripcion,nCostoServicio)
+        VALUES (#{nombre_servicio}, #{sDescripcion},#{nCostoServicio});
+    </insert>
+    <delete id="deleteById" parameterType="Integer">
+        DELETE from servicios WHERE id_servicio = #{id_servicio};
+    </delete>   
+    <select id="getById" parameterType="Integer" resultType="com.data.models.TbServicios"  resultMap="TipoServiciosMap">
+        SELECT * FROM servicios WHERE id_servicio = #{id_servicio};
+    </select>
+    <update id="update" parameterType="com.data.models.TbServicios">
+        UPDATE servicios
+        SET                            
+        nombre_servicio = #{nombre_servicio},
+        sDescripcion = #{sDescripcion},
+        nCostoServicio =#{nCostoServicio}
+        WHERE id_servicio = #{id_servicio};
+    </update>  
+</mapper>

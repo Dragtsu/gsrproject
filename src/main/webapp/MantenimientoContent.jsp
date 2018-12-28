@@ -4,7 +4,9 @@
 
         <form>
             <table>                                
-                <tr><td>Id unidad:</td><td><input type="text" name="id_unidad" readOnly ></td><td><input type="button" id="cat_id_unidad" value="Seleccionar"/></td></tr>
+                <tr><td>Id unidad:</td><td><input type="text" name="id_unidad" readOnly ></td><td>
+                       <button type="button" id="vehicle" class="btn btn-primary bt-catalogo" data-toggle="modal" data-target="#catalogoModal">...</button>                       
+                </td></tr>
                 <tr><td>Tipo Mantenimiento:</td><td><input type="text" name="id_tipo_mantenimiento" maxlength="25"></td><td><input type="button" id="cat_id_unidad" value="Seleccionar"/></td></tr>
                 <tr><td>Descripcion:</td><td><textarea name="sDescripcion" id="sDescripcion" maxlength="100"></textarea></td><td></td></tr>
                 <tr><td>Fecha programada Mantenimiento:</td><td><input type="text" name="fMantenimiento" id="sDescripcion" maxlength="10" readOnly class="datepicker"></td><td></td></tr>

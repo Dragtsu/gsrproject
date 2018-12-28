@@ -1,17 +1,13 @@
 <h2 id="Titulo">Unidad</h2>
 <div  class="form-group">
-    <fieldset>                        
-
+    <fieldset>               
         <form>
             <table>                                
-                <tr><td>Id Vehiculo:</td><td><input type="text" name="id_vehiculo" class="readOnly input-number" maxlength="18"></td></tr>
-                <tr><td>Descripcion:</td><td><textarea rows="2" cols="50" name="sDescripcion" id="sDescripcion"  class="form-control" ></textarea></td></tr>
-                <tr><td>Fecha Mantenimiento:</td><td><input type="text" name="fMantenimiento" maxlength="10"  class="datepicker"></td></tr>
-                <tr><td>Fecha Verificacion:</td><td><input type="text" name="fVerificacion" maxlength="10"  class="datepicker"></td></tr>
-                <tr><td>Fecha Seguro:</td><td><input type="text" name="fSeguro" maxlength="10"  class="datepicker"></td></tr>
-                <tr><td>Costo del Servicio:</td><td><input  type="text" name="nCostoServicio" class="input-money" maxlength="8"></td></tr>
-            </table>
-
+                <tr><td>Id Unidad:</td><td><input type="text" name="id_unidad" class="input-number" maxlength="18"></td></tr>
+                <tr><td>Nombre:</td><td><input type="text" name="sNombre" maxlength="25" ></td></tr>
+                <tr><td>Descripci&oacute;n:</td><td><textarea rows="2" cols="50" maxlength="100" name="sDescripcion" id="sDescripcion"  class="form-control" ></textarea></td></tr>              
+                <tr><td>Unidad disponible:</td><td><select name="unidad_disponible" id="unidad_disponible" ><option value="1">SI</option><option value="0">NO</option></select></td></tr>
+               </table>
             <div class="adjust">
                 <fieldset>
                     <input type="hidden" name="table" value="vehicle" id="tableShow">   
@@ -32,17 +28,14 @@
             <input type="text"   id="sSearch" maxlength="15">
             <input type="button" value="Buscar" id="buscarBt">  
             <input type="button" value="Limpiar" id="limpiaBuscar"> 
-
         </fieldset>
     </div>                    
     <table class="display dataTablex">
         <thead>
-        <th>Id Vehiculo</th>
+        <th>Id Unidad</th>
+        <th>Nombre</th>
         <th>Descripcion</th>
-        <th>Fecha Mantenimiento</th>
-        <th>Fecha Verificacion</th>
-        <th>Fecha Seguro</th>
-        <th>Costo del Servicio</th>
+        <th>Unidad disponible</th>        
         </thead>               
         <tbody></tbody>
     </table>                    

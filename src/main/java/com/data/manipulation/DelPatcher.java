@@ -6,7 +6,7 @@
 package com.data.manipulation;
 
 import static com.data.configurations.StaticData.*;
-import com.data.models.TbTipoMantenimiento;
+import com.data.models.TbServicios;
 import com.data.models.TbTrabajador;
 import com.data.models.TbUnidad;
 import java.io.IOException;
@@ -24,9 +24,7 @@ import org.json.JSONObject;
 @WebServlet(name = "DelPatcher", urlPatterns = {"/api/del"})
 public class DelPatcher extends HttpServlet {
 
-    public final static int OPERACION_EXITOSA = 0;
-    public final static int REGISTRO_EXISTE = 1;
-    public final static int ERROR_GENERAL = 2;
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -52,9 +50,9 @@ public class DelPatcher extends HttpServlet {
 
             enviaJsonServerSide(response, toDelVehicle(request));
         }
-        else if (paramTable.equals(TIPO_MANTENIMIENTO)) {
+        else if (paramTable.equals(TIPO_SERVICIO)) {
 
-            enviaJsonServerSide(response, toDelTMantto(request));
+            enviaJsonServerSide(response, toDelServicio(request));
         }
     }
 
@@ -75,19 +73,19 @@ public class DelPatcher extends HttpServlet {
         return js;
     }
     
-    private JSONObject toDelTMantto(HttpServletRequest request) {
-System.out.println("To del MAnto"+request.getParameter("value"));
-        TbTipoMantenimiento tb = new TbTipoMantenimiento();        
-        tb.setId_tipo_mantenimiento(request.getParameter("value"));     
+    private JSONObject toDelServicio(HttpServletRequest request) {
+System.out.println("To del Servicios"+request.getParameter("value"));
+        TbServicios tb = new TbServicios();        
+        tb.setId_servicio(request.getParameter("value"));     
 
         JSONObject js = new JSONObject();
 
-        int status = new DataAcces().delete(tb,"TbTipoMantenimiento");        
+        int status = new DataAcces().delete(tb,"TbServicios");        
 
         if (status == OPERACION_EXITOSA) 
-            js.put("mensaje", TMANTTO_DEL_OK);
+            js.put("mensaje", TSERVICIO_DEL_OK);
         else 
-            js.put("mensaje", TMANTTO_DEL_FAIL);        
+            js.put("mensaje", TSERVICIO_DEL_FAIL);        
 
         return js;
     }
@@ -95,7 +93,7 @@ System.out.println("To del MAnto"+request.getParameter("value"));
     private JSONObject toDelVehicle(HttpServletRequest request) {
 
         TbUnidad tb = new TbUnidad();        
-        tb.setId_vehiculo(request.getParameter("value"));     
+        tb.setId_unidad(request.getParameter("value"));     
 
         JSONObject js = new JSONObject();
 

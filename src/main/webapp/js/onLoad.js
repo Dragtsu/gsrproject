@@ -1,14 +1,10 @@
 function limpiaFormulario() {
-    //$("form input:text").not($(".notclean")).val("");   
-   // $("#sDescripcion").val("");
-    //$("#sSearch").val("");
+    $("form input:text").val("");
+    $("#sDescripcion").val("");
+    $("#sSearch").val("");
+    $(".tm").val("TM");
 
-    $.each($("form input:text"), function (i, el) {
-        if($(this).hasClass(".notclean")){
-            alert("true");
-            
-        }
-    });
+
 }
 
 //limpiaFormulario();
@@ -158,8 +154,13 @@ $("#updateBt").click(function () {
 
     $('.selected td').each(function () {
 
-        $('form input[type=text], #sDescripcion').eq($(this).index()).val($(this).html());
+        $('form input[type=text], #sDescripcion, select').eq($(this).index()).val($(this).html());
+        //$("#unidad_disponible").val("0");
+        $('[name=unidad_disponible]').val(1);
     });
+
+    $(".input-money").val(($(".input-money").val().replace(/,/g, "")));
+
     $("#cancelarBt").show();
     $('.readOnly').prop("readonly", true);
 });
@@ -189,5 +190,20 @@ $('.input-number').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
 });
 
+$(".bt-catalogo").click(function () {
+ 
+    alert("...");
+ 
+    $.ajax({
+        type: "GET",
+        url: "./GetCatalog",
+        data: {"table": this.id},
+        success: function (data)
+        {
+            alert(data);
+            //modal-body
+        }
+    });
 
+});
 

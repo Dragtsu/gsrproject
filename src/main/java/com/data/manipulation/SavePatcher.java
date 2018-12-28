@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 import static com.data.configurations.StaticData.*;
-import com.data.models.TbTipoMantenimiento;
+import com.data.models.TbServicios;
 import com.data.models.TbUnidad;
 
 /**
@@ -48,9 +48,9 @@ public class SavePatcher extends HttpServlet {
 
             enviaJsonServerSide(response, toSaveVehicle(request,save));
         }
-         else if (paramValue.equals(TIPO_MANTENIMIENTO)) {
+         else if (paramValue.equals(TIPO_SERVICIO)) {
 
-            enviaJsonServerSide(response, toSaveMantoType(request,save));
+            enviaJsonServerSide(response, toSaveServicios(request,save));
         }
     }
 
@@ -91,12 +91,11 @@ public class SavePatcher extends HttpServlet {
 
         TbUnidad tb = new TbUnidad();
 
-        tb.setId_vehiculo(request.getParameter("id_vehiculo"));
+        tb.setId_unidad(request.getParameter("id_unidad"));
         tb.setsDescripcion(request.getParameter("sDescripcion"));
-        tb.setfMantenimiento(request.getParameter("fMantenimiento"));
-        tb.setfVerificacion(request.getParameter("fVerificacion"));
-        tb.setfSeguro(request.getParameter("fSeguro"));
-        tb.setnCostoServicio(Double.parseDouble(request.getParameter("nCostoServicio")));
+        tb.setsNombre(request.getParameter("sNombre"));
+        tb.setUnidad_disponible(Integer.parseInt(request.getParameter("unidad_disponible")));
+       
 
         JSONObject js = new JSONObject();
 
@@ -121,11 +120,12 @@ public class SavePatcher extends HttpServlet {
         return js;
     }
     
-    private JSONObject toSaveMantoType(HttpServletRequest request, boolean save) {
+    private JSONObject toSaveServicios(HttpServletRequest request, boolean save) {
 
-        TbTipoMantenimiento tb = new TbTipoMantenimiento();
+        TbServicios tb = new TbServicios();
 
-        tb.setTipo_mantenimiento(request.getParameter("tipo_mantenimiento"));
+        tb.setNombre_servicio(request.getParameter("nombre_servicio"));
+        tb.setnCostoServicio(Double.parseDouble(request.getParameter("nCostoServicio")));
         tb.setsDescripcion(request.getParameter("sDescripcion"));
 
         JSONObject js = new JSONObject();
@@ -133,20 +133,20 @@ public class SavePatcher extends HttpServlet {
         int status;
 
         if (request.getParameter("action").equals("save")) {
-            status = new DataAcces().insert(tb, "TbTipoMantenimiento");
+            status = new DataAcces().insert(tb, "TbServicios");
         } else {
-            tb.setId_tipo_mantenimiento(request.getParameter("id_tipo_mantenimiento"));
-            status = new DataAcces().update(tb, "TbTipoMantenimiento");
+            tb.setId_servicio(request.getParameter("id_servicio"));
+            status = new DataAcces().update(tb, "TbServicios");
         }
 
         if (status == OPERACION_EXITOSA && save) {
-            js.put("mensaje", TMANTTO_OK);
+            js.put("mensaje", TSERVICIO_OK);
         } else if (status == OPERACION_EXITOSA) {
-            js.put("mensaje", TMANTTO_UDATE_OK);
+            js.put("mensaje", TSERVICIO_UDATE_OK);
         } else if (status == REGISTRO_EXISTE) {
-            js.put("mensaje", TMANTTO_EXIST);
+            js.put("mensaje", TSERVICIO_EXIST);
         } else if (status == ERROR_GENERAL) {
-            js.put("mensaje", TMANTTO_FAIL);
+            js.put("mensaje", TSERVICIO_FAIL);
         }
 
         return js;

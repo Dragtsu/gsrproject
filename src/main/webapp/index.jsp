@@ -8,12 +8,12 @@
 
         <title>GSR</title>
 
-        <link href="js/style5.css" rel="stylesheet" type="text/css"/>
-        <link href="js/bootstrap.min.css" rel="stylesheet" type="text/css"/>    
-        <link href="js/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>      
-        <link href="js/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <!--<link href="js/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>-->
-        <link href="js/datatables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="js/css/style5.css" rel="stylesheet" type="text/css"/>
+        <link href="js/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>    
+        <link href="js/css/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>      
+        <link href="js/css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="js/css/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>-->
+        <link href="js/css/datatables.min.css" rel="stylesheet" type="text/css"/>
 
 
         <script src="js/jquery-3.3.1.js" type="text/javascript"></script>     
@@ -21,7 +21,6 @@
         <script src="js/bootstrap.min.js" type="text/javascript"></script> 
         <script src="js/popper.min.js" type="text/javascript"></script>           
         <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>          
-
 
         <style>
             fieldset{
@@ -50,6 +49,11 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
+
+                $("submit").submit(function (e) {
+                    e.preventDefault();
+                });
+
                 $(".link").click(function () {
 
                     $.ajax({
@@ -62,13 +66,14 @@
                             $("#container").html(data);
                         }
                     });
+
                 });
-            });
+            });//Document ready
         </script>
     </head>
     <body>
-        
-          <!-- Modal -->
+
+        <!-- Modal -->
         <div class="modal " id="catalogoModal" role="dialog"  aria-hidden="true">
             <div class="modal-dialog modal-lg" >
                 <div class="modal-content">
@@ -88,45 +93,45 @@
                 </div>
             </div>
         </div>
-          <!-- Modal -->
+        <!-- Modal -->
 
-      
+
         <div class="wrapper">
-             <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3></h3>
-            </div>
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3></h3>
+                </div>
 
-            <ul class="list-unstyled components">
-                <p></p>
-                
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Unidad</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a id="vehicle" class="link" href="#">Unidades</a>
-                        </li>
-                        <li>
-                            <a id="Mantenimiento" class="link" href="#">Programas de Mantenimiento</a>
-                        </li>  
-                        <li>
-                            <a id="tManto" class="link" href="#">Tipos Mantenimiento</a>
-                        </li>                       
-                    </ul>
-                </li>
-                <li>
-                    <a id="worker" class="link" href="#">Trabajador</a>                    
-                </li>   
-                <li>
-                    <a id="AlertasProgramas" class="link" href="#">Alertas de programas</a>                    
-                </li> 
-                <li>
-                    <a id="SalidaCampo" class="link" href="#">Salidas a Campo</a>                    
-                </li> 
-            </ul>          
-        </nav>
+                <ul class="list-unstyled components">
+                    <p></p>
 
-            
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Unidad</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a id="vehicle" class="link" href="#">Unidades</a>
+                            </li>
+                            <li>
+                                <a id="Mantenimiento" class="link" href="#">Programas de Mantenimiento</a>
+                            </li>  
+                            <li>
+                                <a id="tServicios" class="link" href="#">Tipos Mantenimiento</a>
+                            </li>                       
+                        </ul>
+                    </li>
+                    <li>
+                        <a id="worker" class="link" href="#">Trabajador</a>                    
+                    </li>   
+                    <li>
+                        <a id="AlertasProgramas" class="link" href="#">Alertas de programas</a>                    
+                    </li> 
+                    <li>
+                        <a id="SalidaCampo" class="link" href="#">Salidas a Campo</a>                    
+                    </li> 
+                </ul>          
+            </nav>
+
+
             <div id="content">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
@@ -156,10 +161,6 @@
                 <div id="container">
 
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#catalogoModal">
-                        Launch demo modal
-                    </button>
 
                 </div>
 

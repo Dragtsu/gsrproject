@@ -10,58 +10,15 @@ package com.data.models;
  * @author dragneel
  */
 public class TbUnidad {
-    
-    private String id_vehiculo;
+
+    private String id_unidad;
+    private String sNombre;
     private String sDescripcion;
-    private String fMantenimiento;
-    private String fVerificacion;
-    private String fSeguro;
-    private Double nCostoServicio;
+    private int unidad_disponible;
 
-    public String getId_vehiculo() {
-        return id_vehiculo;
-    }
-
-    public void setId_vehiculo(String id_vehiculo) {
-        this.id_vehiculo = id_vehiculo;
-    }
-
-    public String getfMantenimiento() {
-        return fMantenimiento;
-    }
-
-    public void setfMantenimiento(String fMantenimiento) {
-        this.fMantenimiento = fMantenimiento;
-    }
-
-    public String getfVerificacion() {
-        return fVerificacion;
-    }
-
-    public void setfVerificacion(String fVerificacion) {
-        this.fVerificacion = fVerificacion;
-    }
-
-    public String getfSeguro() {
-        return fSeguro;
-    }
-
-    public void setfSeguro(String fSeguro) {
-        this.fSeguro = fSeguro;
-    }
-
-    public Double getnCostoServicio() {
-        return nCostoServicio;
-    }
-
-    public void setnCostoServicio(Double nCostoServicio) {
-        this.nCostoServicio = nCostoServicio;
-    }   
-    
+   
     public String[] toArray() {
-
-        return new String[]{id_vehiculo,sDescripcion, fMantenimiento, fVerificacion, fSeguro, ""+nCostoServicio};
-
+        return new String[]{id_unidad,sNombre, sDescripcion, (unidad_disponible==1)?"SI":"NO"};
     }
 
     public String getsDescripcion() {
@@ -70,6 +27,30 @@ public class TbUnidad {
 
     public void setsDescripcion(String sDescripcion) {
         this.sDescripcion = sDescripcion;
+    }
+
+    public String getId_unidad() {
+        return id_unidad;
+    }
+
+    public void setId_unidad(String id_unidad) {
+        this.id_unidad = id_unidad;
+    }
+
+    public String getsNombre() {
+        return sNombre;
+    }
+
+    public void setsNombre(String sNombre) {
+        this.sNombre = sNombre;
+    }
+
+    public int getUnidad_disponible() {
+        return unidad_disponible;
+    }
+
+    public void setUnidad_disponible(int unidad_disponible) {
+        this.unidad_disponible = unidad_disponible;
     }
 
     

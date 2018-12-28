@@ -13,6 +13,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <mappers>
         <mapper resource="TbTrabajador.xml" />
         <mapper resource="TbUnidad.xml" />
-        <mapper resource="TbTipoMantenimiento.xml" />
+        <mapper resource="TbServicios.xml" />
     </mappers>
 </configuration>

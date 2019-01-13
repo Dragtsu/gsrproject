@@ -190,18 +190,19 @@ $('.input-number').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
 });
 
-$(".bt-catalogo").click(function () {
- 
-    alert("...");
+$(".bt-catalogo").click(function () {  
  
     $.ajax({
         type: "GET",
         url: "./GetCatalog",
+        dataType: "json",
         data: {"table": this.id},
         success: function (data)
         {
-            alert(data);
-            //modal-body
+            $(".modal-body").empty();
+            $(".modal-body").append(data.table);
+            $(".modal-body").append(data.input);
+            $(".modal-body").append(data.script);
         }
     });
 

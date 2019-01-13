@@ -6,9 +6,6 @@
 package com.data.manipulation;
 
 import com.data.configurations.StaticData;
-import static com.data.configurations.StaticData.TIPO_SERVICIO;
-import static com.data.configurations.StaticData.TRABAJADOR;
-import static com.data.configurations.StaticData.UNIDAD;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -18,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -43,32 +41,26 @@ public class Datatable extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         String tablaConsultar = request.getParameter("table");
+
+        System.out.println("********************** Tabla a consultar para el catalogo: " + tablaConsultar);
+
+        JSONObject js = new JSONObject();
         
-        System.out.println("********************** Tabla a consultar para el catalogo: "+tablaConsultar);
-
-        switch (tablaConsultar) {
-            case TRABAJADOR:
-                tablaConsultar = "TbTrabajador";
-                break;
-            case UNIDAD:
-                //tablaConsultar = "TbUnidad";                
-                break;
-            case TIPO_SERVICIO:
-                tablaConsultar = "TbServicios";
-                break;
-            default:
-                break;
-        }
-
-        StaticData.enviaTextAjax(response, getHtml(tablaConsultar));
-
-        System.out.println("****************************Get html*****************************");
+        js.put("table", getHtml(tablaConsultar));
+        js.put("input", "<input type=\"hidden\" id=\"" + tablaConsultar + "\" class=\"catalogModal\">");
+        js.put("script","<script src=\"js/catalogModal.js\" type=\"text/javascript\"></script>");
+        StaticData.enviaJsonServerSide(response, js);
 
     }
+    
+    /*
+    Se extrae la table del crud de la tabla, se da por hecho que el id de la entidad
+    es la primer columna de la tabla.   
+    */
 
     public String getHtml(String jsp) {
 
-        File input = new File( getServletContext().getRealPath("/") + jsp + "Content.jsp");
+        File input = new File(getServletContext().getRealPath("/") + jsp + "Content.jsp");
         Document doc = null;
 
         try {
@@ -81,7 +73,7 @@ public class Datatable extends HttpServlet {
 
         Element link = doc.select("table.dataTablex").first();
 
-        return " <table class=\"display dataTablex\">" + link.html() + "</table>";
+        return " <table id=\"tableCatalog\" class=\"display\">" + link.html() + "</table>";
 
     }
 

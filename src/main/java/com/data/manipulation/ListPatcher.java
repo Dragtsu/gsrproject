@@ -106,27 +106,7 @@ public class ListPatcher extends HttpServlet {
 
     }
 
-    private void enviaJsonServerSide(HttpServletResponse response, JSONObject JSON) {
-
-        PrintWriter out = null;
-        try {
-            response.setContentType("application/json");
-            response.setHeader("Cache-Control", "no-store");
-            response.setContentType("text/x-json; charset=ISO-8859-1");
-            out = response.getWriter();
-            System.out.println(JSON);
-            out.print(JSON);
-
-        } catch (IOException IO) {
-            System.out.println(IO);
-        } finally {
-            if (out != null) {
-                out.flush();
-                out.close();
-            }
-
-        }
-    }
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

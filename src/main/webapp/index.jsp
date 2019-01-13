@@ -20,7 +20,9 @@
         <script src="js/jquery-ui.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script> 
         <script src="js/popper.min.js" type="text/javascript"></script>           
-        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>          
+        <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>   
+        
+      
 
         <style>
             fieldset{
@@ -43,6 +45,11 @@
             }
             .adjust fieldset{
                 float:left;                
+            }
+            
+            button{
+                margin: auto;
+                padding: 0;
             }
 
         </style>
@@ -87,8 +94,9 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="catalog_row_accept" class="btn btn-primary">Aceptar</button>
+                        <input type="hidden"  id="modal-target" input-target=""   />
                     </div>
                 </div>
             </div>
@@ -112,10 +120,10 @@
                                 <a id="vehicle" class="link" href="#">Unidades</a>
                             </li>
                             <li>
-                                <a id="Mantenimiento" class="link" href="#">Programas de Mantenimiento</a>
+                                <a id="Mantenimiento" class="link" href="#">Programacion de Servicios</a>
                             </li>  
                             <li>
-                                <a id="tServicios" class="link" href="#">Tipos Mantenimiento</a>
+                                <a id="tServicios" class="link" href="#">Servicios</a>
                             </li>                       
                         </ul>
                     </li>
@@ -154,18 +162,11 @@
                         </div>
                     </div>
                 </nav>
-
-
-
-
                 <div id="container">
 
 
 
                 </div>
-
-
-
             </div>    <!-- CONTENT -->        
         </div>
     </body>

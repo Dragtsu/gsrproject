@@ -18,7 +18,7 @@
 
         <script src="js/jquery-3.3.1.js" type="text/javascript"></script>     
         <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script> 
+       <script src="js/bootstrap.min.js" type="text/javascript"></script> 
         <script src="js/popper.min.js" type="text/javascript"></script>           
         <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>   
         
@@ -94,7 +94,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button"  id="close_modal" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         <button type="button" id="catalog_row_accept" class="btn btn-primary">Aceptar</button>
                         <input type="hidden"  id="modal-target" input-target=""   />
                     </div>

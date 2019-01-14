@@ -43,27 +43,19 @@ $('#tableCatalog tbody').on('click', 'tr', function () {
     
 });
 
-$(".bt-catalogo").click(function(){
-    
-   //   event.stopPropagation();
-   alert("click a catalogo");
-    //alert($(this).attr("input-target"));
-   // $("#modal-target").attr("input-target",$(this).attr("input-target"));
-    
-  // alert( $("#modal-target").attr("input-target"));
-    
-    //$("#catalogoModal").modal('show');
-   
-});
-
-
-$("#catalog_row_accept").click(function(){       
- 
-    alert($("#modal-target").attr("input-target"));
+$("#catalog_row_accept").click(function(){         
  
     $("#"+$("#modal-target").attr("input-target")).val(
             $("#tableCatalog .selected").children().eq(0).html()
      );
      
-     $('#catalogoModalmodal').modal('toggle');     
+     $("#close_modal").click();
+});
+
+$( 'body' ).on( 'click', '#container .bt-catalogo', function(event) {
+    
+    event.stopPropagation();     
+    $("#modal-target").attr("input-target",$(this).attr("input-target"));       
+    $("#catalogoModal").modal('show'); 
+   
 });

@@ -196,6 +196,7 @@ $(".bt-catalogo").click(function () {
         type: "GET",
         url: "./GetCatalog",
         dataType: "json",
+        async: false,
         data: {"table": this.id},
         success: function (data)
         {

@@ -7,7 +7,7 @@
                     <button type="button" id="vehicle" input-target="id_unidad" class="btn btn-primary bt-catalogo" data-toggle="modal" >...</button>                       
                 </td>
             </tr>
-            <tr><td>Tipo Servicio:</td><td><input type="text" name="id_servicio" maxlength="25"></td>
+            <tr><td>Tipo Servicio:</td><td><input type="text"  id="id_servicio" name="id_servicio" readOnly></td>
                 <td>                      
                     <button type="button" id="tServicios" input-target="id_servicio" class="btn btn-primary bt-catalogo" data-toggle="modal" >...</button>
                 </td>

@@ -18,13 +18,7 @@ $('#sidebarCollapse').on('click', function () {
     $(this).toggleClass('active');
 });
 
-$(".datepicker").datepicker({
-    dateFormat: "dd-mm-yy",
-    showOn: "button",
-    buttonImage: "js/images/calendar.gif",
-    buttonImageOnly: true,
-    buttonText: "click"
-});
+
 
 $("#save").click(function () {
 
@@ -190,8 +184,8 @@ $('.input-number').on('input', function () {
     this.value = this.value.replace(/[^0-9]/g, '');
 });
 
-$(".bt-catalogo").click(function () {  
- 
+$(".bt-catalogo").click(function () {
+
     $.ajax({
         type: "GET",
         url: "./GetCatalog",
@@ -209,3 +203,28 @@ $(".bt-catalogo").click(function () {
 
 });
 
+
+$.datepicker.regional['es'] = {
+    closeText: 'Cerrar',
+    prevText: '< Ant',
+    nextText: 'Sig >',
+    currentText: 'Hoy',
+    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+    weekHeader: 'Sm',
+    dateFormat: 'dd/mm/yy',
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: ''
+};
+$.datepicker.setDefaults($.datepicker.regional['es']);
+
+$(".datepicker").datepicker({
+    showOn: "button",
+    buttonImage: "js/images/calendario.png",
+    buttonImageOnly: true
+});

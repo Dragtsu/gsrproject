@@ -53,8 +53,7 @@ $("#catalog_row_accept").click(function(){
 });
 
 $( 'body' ).on( 'click', '#container .bt-catalogo', function(event) {
-    
-    event.stopPropagation();     
+  
     $("#modal-target").attr("input-target",$(this).attr("input-target"));       
     $("#catalogoModal").modal('show'); 
    

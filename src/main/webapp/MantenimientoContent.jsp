@@ -1,21 +1,24 @@
 <h2 id="Titulo">Programas de Mantenimiento</h2>
 <div>
-    <fieldset class="form-group">                        
+    <fieldset class="form-group">    
+        <form>                       
         <table>                                
-            <tr><td>Id unidad:</td><td><input type="text" id="id_unidad" name="id_unidad" readOnly ></td>
+            <tr><td>Id unidad:</td>
                 <td>
+                    <input type="text" id="id_unidad" name="id_unidad" readOnly >              
                     <button type="button" id="vehicle" input-target="id_unidad" class="btn btn-primary bt-catalogo" data-toggle="modal" >...</button>                       
                 </td>
             </tr>
-            <tr><td>Tipo Servicio:</td><td><input type="text"  id="id_servicio" name="id_servicio" readOnly></td>
-                <td>                      
+            <tr><td>Tipo Servicio:</td>
+                <td>
+                    <input type="text"  id="id_servicio" name="id_servicio" readOnly>                                     
                     <button type="button" id="tServicios" input-target="id_servicio" class="btn btn-primary bt-catalogo" data-toggle="modal" >...</button>
                 </td>
             </tr>
-            <tr><td>Descripcion:</td><td><textarea name="sDescripcion" id="sDescripcion" maxlength="100"></textarea></td><td></td></tr>
-            <tr><td>Fecha programada Mantenimiento:</td><td><input type="text" name="fMantenimiento" id="sDescripcion" maxlength="10" readOnly class="datepicker"></td><td></td></tr>
-            <tr><td>Costo total:</td><td><input name="nCosto"></td><td></td></tr>
-            <tr><td>Realizado:</td><td><input type="checkbox" name="mantoRealizado" ></td><td></td></tr>
+            <tr><td>Descripcion:</td><td><textarea name="sDescripcion" id="sDescripcion" maxlength="100"></textarea></td></tr>
+            <tr><td>Fecha programada Mantenimiento:</td><td><input type="text" name="fMantenimiento"  maxlength="10"  class="datepicker"></td></tr>
+            <tr><td>Costo total:</td><td><input name="nCosto"></td></tr>
+            <tr><td>Realizado:</td><td><input type="checkbox" name="mantoRealizado" ></td></tr>
         </table>
         <div class="adjust">
             <fieldset>

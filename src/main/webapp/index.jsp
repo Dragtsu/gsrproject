@@ -9,27 +9,40 @@
         <title>GSR</title>
 
         <link href="js/css/style5.css" rel="stylesheet" type="text/css"/>
-        <link href="js/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>    
-        <link href="js/css/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>      
-        <link href="js/css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <!--<link href="js/css/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>-->
+        <link href="js/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> 
         <link href="js/css/datatables.min.css" rel="stylesheet" type="text/css"/>
 
+        <link href="js/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <link href="js/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="js/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+        <!--<link href="js/css/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>      
+        <link href="js/css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <link href="js/css/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>-->
 
-        <script src="js/jquery-3.3.1.js" type="text/javascript"></script>     
-        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-       <script src="js/bootstrap.min.js" type="text/javascript"></script> 
+
+
+        <!--<script src="js/jquery-3.3.1.js" type="text/javascript"></script>  
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>-->
+
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+        <script src="js/bootstrap.min.js" type="text/javascript"></script> 
         <script src="js/popper.min.js" type="text/javascript"></script>           
         <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>   
-        
-      
+
+
 
         <style>
             fieldset{
                 border: solid 1px #DDD !important;
                 padding: 10px 10px 10px 10px;
                 margin: 10px 50px 10px 10px;
-                border-bottom: none;                
+                border-bottom: none;   
+                background-color: gainsboro;
             }
             legend{
                 width:inherit; 
@@ -46,10 +59,15 @@
             .adjust fieldset{
                 float:left;                
             }
-            
+
             button{
                 margin: auto;
                 padding: 0;
+            }
+            
+            input{
+                
+                background-color: white;
             }
 
         </style>
@@ -75,6 +93,7 @@
                     });
 
                 });
+               
             });//Document ready
         </script>
     </head>
@@ -163,7 +182,6 @@
                     </div>
                 </nav>
                 <div id="container">
-
 
 
                 </div>

@@ -146,14 +146,32 @@ $("#updateBt").click(function () {
         return;
     }
 
+    var currentElement;
+
     $('.selected td').each(function () {
 
-        $('form input[type=text], #sDescripcion, select').eq($(this).index()).val($(this).html());
-        //$("#unidad_disponible").val("0");
-        $('[name=unidad_disponible]').val(1);
+        currentElement = $('form input[type=text], textarea, select').eq($(this).index());
+
+        if ($(currentElement).is("input") || $(currentElement).is("textarea")) {
+            
+            $(currentElement).val($(this).html());
+            
+            if( $(currentElement).hasClass("input-money")){
+               
+                  $(currentElement).val(($(currentElement).val().replace(/,/g, "")));                
+            }
+        }
+        
+        else if ($(currentElement).is("select")) {
+
+            $(currentElement).children().filter(function () {
+                return $(this).text() === $(this).html();
+            }).prop("selected", true);
+        }
+
     });
 
-    $(".input-money").val(($(".input-money").val().replace(/,/g, "")));
+   
 
     $("#cancelarBt").show();
     $('.readOnly').prop("readonly", true);
@@ -228,3 +246,5 @@ $(".datepicker").datepicker({
     buttonImage: "js/images/calendario.png",
     buttonImageOnly: true
 });
+
+$("input[type=button]").addClass("btn btn-primary");

@@ -42,7 +42,7 @@
                 padding: 10px 10px 10px 10px;
                 margin: 10px 50px 10px 10px;
                 border-bottom: none;   
-                background-color: gainsboro;
+                
             }
             legend{
                 width:inherit; 
@@ -65,11 +65,6 @@
                 padding: 0;
             }
             
-            input{
-                
-                background-color: white;
-            }
-
         </style>
 
         <script type="text/javascript">

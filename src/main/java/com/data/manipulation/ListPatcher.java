@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import static com.data.configurations.StaticData.*;
+import com.data.models.TbProgramacionServicios;
 import com.data.models.TbServicios;
 import com.data.models.TbUnidad;
 
@@ -40,61 +41,64 @@ public class ListPatcher extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String tablaConsultar = request.getParameter("table");
+        String BatisMapper = request.getParameter("table");
 
-        System.out.println("Buscando datos de: .. " + tablaConsultar);
+        System.out.println("Buscando datos de: .. " + BatisMapper);
 
         /* System.out.println("iDisplayStart.. " + request.getParameter("iDisplayStart"));
         System.out.println("iTotalDisplayRecords.. " + request.getParameter("iTotalDisplayRecords"));
         System.out.println("iTotalRecords.. " + request.getParameter("iTotalRecords"));
         System.out.println("iDisplayLength.. " + request.getParameter("iDisplayLength"));*/
-        switch (tablaConsultar) {
+        switch (BatisMapper) {
             case TRABAJADOR:
-                tablaConsultar="TbTrabajador";
+                BatisMapper = "TbTrabajador";
                 break;
             case UNIDAD:
-                tablaConsultar="TbUnidad";
+                BatisMapper = "TbUnidad";
                 break;
             case TIPO_SERVICIO:
-                System.out.println("********** Consultando table tipo TIPO_SERVICIO");
-                tablaConsultar="TbServicios";
+                BatisMapper = "TbServicios";
+                break;
+            case PROGRAMACION_SERVICIO:
+                BatisMapper = "TbProgramacionServicios";
                 break;
             default:
                 break;
         }
 
-            enviaJsonServerSide(response, getTableJson(
-                    Integer.parseInt(request.getParameter("iDisplayStart")),
-                    Integer.parseInt(request.getParameter("iDisplayLength")),
-                    request.getParameter("sSearch"),
-                    tablaConsultar
-            ));
-        
+        enviaJsonServerSide(response, getTableJson(Integer.parseInt(request.getParameter("iDisplayStart")),
+                Integer.parseInt(request.getParameter("iDisplayLength")),
+                request.getParameter("sSearch"),
+                BatisMapper
+        ));
+
     }
-    
-    private String [] cast(String table, Object obj){
-        String [] Return=null;
-        
-        if(table.equals("TbTrabajador"))
-            Return=((TbTrabajador)obj).toArray();
-        else if(table.equals("TbUnidad"))
-            Return=((TbUnidad)obj).toArray();
-        else if(table.equals("TbServicios"))
-            Return=((TbServicios)obj).toArray(); 
-        
+
+    private String[] cast(String table, Object obj) {
+        String[] Return = null;
+
+        if (table.equals("TbTrabajador")) {
+            Return = ((TbTrabajador) obj).toArray();
+        } else if (table.equals("TbUnidad")) {
+            Return = ((TbUnidad) obj).toArray();
+        } else if (table.equals("TbServicios")) {
+            Return = ((TbServicios) obj).toArray();
+        } else if (table.equals("TbProgramacionServicios")) {
+            Return = ((TbProgramacionServicios) obj).toArray();
+        }
+
         return Return;
     }
 
-    private JSONObject getTableJson(int iDisplayStart, int iDisplayLength, String like , String tablaConsultar) {
-               
+    private JSONObject getTableJson(int iDisplayStart, int iDisplayLength, String like, String tablaConsultar) {
 
-        ArrayList<Object> tb = new DataAcces().read(like,tablaConsultar);
-      
+        ArrayList<Object> tb = new DataAcces().read(like, tablaConsultar);
+
         JSONArray array = new JSONArray();
-        int limit = (iDisplayStart+iDisplayLength>tb.size())? tb.size():iDisplayStart+iDisplayLength;
-        
+        int limit = (iDisplayStart + iDisplayLength > tb.size()) ? tb.size() : iDisplayStart + iDisplayLength;
+
         for (int i = iDisplayStart; i < limit; i++) {
-            array.put( Arrays.asList( cast(tablaConsultar, tb.get(i)) ));
+            array.put(Arrays.asList(cast(tablaConsultar, tb.get(i))));
         }
 
         return new JSONObject()
@@ -105,8 +109,6 @@ public class ListPatcher extends HttpServlet {
                 .put("iDisplayLength", tb.size());
 
     }
-
-   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -1,4 +1,4 @@
-<h2 id="Titulo">Programacion de salida a campo</h2>
+<div class="title">  <h4>Programacion de salida a campo</h4></div>
 <div>
     <fieldset class="form-group">                        
 

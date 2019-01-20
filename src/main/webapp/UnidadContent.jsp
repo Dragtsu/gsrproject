@@ -1,6 +1,6 @@
-<h2 id="Titulo">Unidad</h2>
-<div  class="form-inline">
-    <fieldset>               
+<div class="title">  <h4>Unidad</h4></div>
+<div>
+    <fieldset class="form-inline">               
         <form>
             <table>                                
                 <tr><td>Id Unidad:</td><td><input type="text" name="id_unidad" class="input-number form-control"  maxlength="18"></td></tr>
@@ -17,7 +17,7 @@
                </table>
             <div class="adjust">
                 <fieldset>
-                    <input type="hidden" name="table" value="vehicle" id="tableShow">   
+                    <input type="hidden" name="table" value="Unidad" id="tableShow">   
                     <input type="hidden" name="action" value="save" id="action"> 
                     <input type="button" class="btn btn-primary" id="save" value="Guardar"/>
                     <input type="button" class="btn btn-primary" id="limpiar" value="Limpiar"/>

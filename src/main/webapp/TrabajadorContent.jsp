@@ -1,4 +1,4 @@
-<h2 id="Titulo">Trabajador</h2>
+<div class="title">  <h4>Trabajador</h4></div>
 <div>
     <fieldset class="form-inline">                        
 
@@ -13,7 +13,7 @@
 
             <div class="adjust">
                 <fieldset>
-                    <input type="hidden" name="table" value="worker" id="tableShow">   
+                    <input type="hidden" name="table" value="Trabajador" id="tableShow">   
                     <input type="hidden" name="action" value="save" id="action"> 
                     <input type="button" id="save" value="Guardar" class="btn btn-primary"/>
                     <input type="button" id="limpiar" value="Limpiar"class="btn btn-primary"/>

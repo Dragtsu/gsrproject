@@ -7,6 +7,7 @@ package com.data.configurations;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
@@ -18,10 +19,13 @@ public class StaticData {
     
     
     public static final String JSPATH = "jsp/";
+    
+    public static DecimalFormat formatoNumerico = new DecimalFormat("#,###,###,##0.00");
 
-    public static final String TRABAJADOR = "worker";
-    public static final String UNIDAD = "vehicle";
-    public static final String TIPO_SERVICIO = "tServicios";
+    public static final String TRABAJADOR = "Trabajador";
+    public static final String UNIDAD = "Unidad";
+    public static final String TIPO_SERVICIO = "Servicios";
+    public static final String PROGRAMACION_SERVICIO = "ProgramacionServicios";
 
     public final static int OPERACION_EXITOSA = 0;
     public final static int REGISTRO_EXISTE = 1;

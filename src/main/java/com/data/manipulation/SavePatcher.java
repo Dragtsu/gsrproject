@@ -43,18 +43,18 @@ public class SavePatcher extends HttpServlet {
 
         if (paramValue.equals(TRABAJADOR)) {
 
-            enviaJsonServerSide(response, toSaveWorker(request,save));
+            enviaJsonServerSide(response, guardaTrabajador(request,save));
         } else if (paramValue.equals(UNIDAD)) {
 
-            enviaJsonServerSide(response, toSaveVehicle(request,save));
+            enviaJsonServerSide(response, guardaUnidad(request,save));
         }
          else if (paramValue.equals(TIPO_SERVICIO)) {
 
-            enviaJsonServerSide(response, toSaveServicios(request,save));
+            enviaJsonServerSide(response, guardaServicio(request,save));
         }
     }
 
-    private JSONObject toSaveWorker(HttpServletRequest request, boolean save) {
+    private JSONObject guardaTrabajador(HttpServletRequest request, boolean save) {
 
         TbTrabajador tb = new TbTrabajador();
 
@@ -87,7 +87,7 @@ public class SavePatcher extends HttpServlet {
         return js;
     }
 
-    private JSONObject toSaveVehicle(HttpServletRequest request, boolean save) {
+    private JSONObject guardaUnidad(HttpServletRequest request, boolean save) {
 
         TbUnidad tb = new TbUnidad();
 
@@ -120,7 +120,7 @@ public class SavePatcher extends HttpServlet {
         return js;
     }
     
-    private JSONObject toSaveServicios(HttpServletRequest request, boolean save) {
+    private JSONObject guardaServicio(HttpServletRequest request, boolean save) {
 
         TbServicios tb = new TbServicios();
 

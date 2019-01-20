@@ -1,4 +1,4 @@
-<h2 id="Titulo">Programacion de Servicios</h2>
+<div class="title">  <h4>Programacion de servicios</h4></div>
 <div>
     <fieldset class="form-inline">    
         <form>                       
@@ -18,11 +18,17 @@
             <tr><td>Descripcion:</td><td><textarea name="sDescripcion" class="form-control" id="sDescripcion" maxlength="100"></textarea></td></tr>
             <tr><td>Fecha programada Mantenimiento:</td><td><input type="text" class="form-control" name="fMantenimiento"  maxlength="10"  class="datepicker"></td></tr>
             <tr><td>Costo total:</td><td><input name="nCosto" class="form-control"></td></tr>
-            <tr><td>Realizado:</td><td><input type="checkbox" class="form-control" name="mantoRealizado" ></td></tr>
+            <tr><td>Realizado:</td>
+                <td>                    
+                    <select name="mantoRealizado" id="unidad_disponible" class="form-control">
+                            <option value="1">SI</option>
+                            <option value="0">NO</option>
+                    </select>
+                </td></tr>
         </table>
         <div class="adjust">
             <fieldset>
-                <input type="hidden" name="table" value="Mantenimiento" id="tableShow">  
+                <input type="hidden" name="table" value="ProgramacionServicios" id="tableShow">  
                 <input type="hidden" name="action" value="save" id="action"> 
                 <input type="button" class="btn btn-primary" id="save" value="Guardar"/>
                 <input type="button" class="btn btn-primary" id="limpiar" value="Limpiar"/>
@@ -44,10 +50,13 @@
     </div>                    
     <table class="display dataTablex">
         <thead>
-        <th>Id unidad</th>
-        <th>Tipo Mantenimiento</th>
-        <th>Descripcion</th>  
-        <th>Fecha programada Mantenimiento</th>  
+        <th>Id programacion servicio</th>
+        <th>Unidad</th>
+        <th>Nombre Unidad</th>
+        <th>Servicio</th>
+        <th>Nombre Servicio</th> 
+        <th>Descripcion programa</th>
+        <th>Fecha programada</th>  
         <th>Costo total</th>  
         <th>Realizado</th>  
         </thead>               

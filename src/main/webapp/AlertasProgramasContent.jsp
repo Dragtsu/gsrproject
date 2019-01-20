@@ -19,7 +19,7 @@
     
     
 </style>
-<h2 id="Titulo">Alertas de programas</h2>
+<div class="title">  <h4>Alertas de programas</h4></div>
 <div>
     <fieldset class="form-group">         
         <legend>Color de alerta:</legend>

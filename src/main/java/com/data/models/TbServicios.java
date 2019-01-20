@@ -5,7 +5,7 @@
  */
 package com.data.models;
 
-import java.text.DecimalFormat;
+import static com.data.configurations.StaticData.*;
 
 /**
  *
@@ -19,7 +19,7 @@ public class TbServicios {
     private Double nCostoServicio;
 
     private final String SufijoTipoMantenimiento = "SM";
-    DecimalFormat formatoNumerico = new DecimalFormat("#,###,###,##0.00");
+    
 
     public String[] toArray() {
         System.out.println("Convirtiendo array");

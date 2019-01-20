@@ -1,4 +1,4 @@
-<h2 id="Titulo">Listado de Servicios</h2>
+<div class="title">  <h4>Listado de servicios</h4></div>
 <div>
     <fieldset class="form-inline">                        
 
@@ -12,7 +12,7 @@
 
             <div class="adjust">
                 <fieldset>
-                    <input type="hidden" name="table" value="tServicios" id="tableShow">  
+                    <input type="hidden" name="table" value="Servicios" id="tableShow">  
                     <input type="hidden" name="action" value="save" id="action"> 
                     <input type="button" class="btn btn-primary" id="save" value="Guardar"/>
                     <input type="button" class="btn btn-primary" id="limpiar" value="Limpiar"/>

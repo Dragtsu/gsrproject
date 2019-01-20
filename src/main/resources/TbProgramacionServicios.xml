@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="TbProgramacionServicios">
+  
+    <resultMap id="ProgramacionServiciosRead" type="com.data.models.TbProgramacionServicios">       
+        <result property="id_programacion_servicio" column="id_programacion_servicio" jdbcType="INTEGER"/>      
+        <result property="sDescripcion_programacion" column="sDescripcion_programacion" jdbcType="VARCHAR" />   
+        <result property="dFecha_programada" column="dFecha_programada" jdbcType="VARCHAR" />   
+        <result property="nCostoServicio" column="nCostoServicio" jdbcType="DOUBLE" />    
+        <result property="bRealizado" column="bRealizado" jdbcType="INTEGER" />     
+        <association property="servicio" resultMap="TipoServicioResultMap"/>
+        <association property="unidad" resultMap="UnidadResultMap"/>     
+    </resultMap>   
+    
+     <resultMap id="TipoServicioResultMap" type="com.data.models.TbServicios">
+        <result property="id_servicio" column="id_servicio" jdbcType="INTEGER" />
+        <result property="nombre_servicio" column="nombre_servicio" jdbcType="VARCHAR" />          
+    </resultMap>  
+    
+    <resultMap id="UnidadResultMap" type="com.data.models.TbUnidad">
+        <result property="id_unidad" column="id_unidad" jdbcType="VARCHAR" />
+        <result property="sNombre" column="sNombre" jdbcType="VARCHAR" />        
+    </resultMap> 
+    
+    <select id="getAll" parameterType="String" resultMap="ProgramacionServiciosRead">
+        select 
+        SP.id_programacion_servicio,
+        U.id_unidad,
+        U.sNombre,
+        S.id_servicio,
+        S.nombre_servicio,
+        SP.sDescripcion_programacion,
+        SP.dFecha_programada,
+        SP.nCostoServicio,
+        SP.bRealizado
+        from servicios_programados SP inner join unidad U on SP.id_unidad=U.id_unidad 
+        inner join servicios S on SP.id_servicio=S.id_servicio 
+        where id_programacion_servicio like #{id_programacion_servicio}||'%'        
+    </select>  
+</mapper>
+

@@ -15,5 +15,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource="TbUnidad.xml" />
         <mapper resource="TbServicios.xml" />
         <mapper resource="TbProgramacionServicios.xml" />
+        <mapper resource="TbVigenciaServicios.xml" />        
     </mappers>
 </configuration>

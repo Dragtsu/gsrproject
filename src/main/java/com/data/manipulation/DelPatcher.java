@@ -6,6 +6,7 @@
 package com.data.manipulation;
 
 import static com.data.configurations.StaticData.*;
+import com.data.models.TbProgramacionServicios;
 import com.data.models.TbServicios;
 import com.data.models.TbTrabajador;
 import com.data.models.TbUnidad;
@@ -54,6 +55,10 @@ public class DelPatcher extends HttpServlet {
 
             enviaJsonServerSide(response, toDelServicio(request));
         }
+        else if (paramTable.equals(PROGRAMACION_SERVICIO)) {
+
+            enviaJsonServerSide(response, toDelServicioProgramado(request));
+        }
     }
 
     private JSONObject toDelWorker(HttpServletRequest request) {
@@ -74,7 +79,7 @@ public class DelPatcher extends HttpServlet {
     }
     
     private JSONObject toDelServicio(HttpServletRequest request) {
-System.out.println("To del Servicios"+request.getParameter("value"));
+
         TbServicios tb = new TbServicios();        
         tb.setId_servicio(request.getParameter("value"));     
 
@@ -103,6 +108,23 @@ System.out.println("To del Servicios"+request.getParameter("value"));
             js.put("mensaje", VEHICLE_DEL_OK);
         else 
             js.put("mensaje", VEHICLE_DEL_FAIL);        
+
+        return js;
+    }
+    
+    private JSONObject toDelServicioProgramado(HttpServletRequest request) {
+
+        TbProgramacionServicios tb = new TbProgramacionServicios();        
+        tb.setId_programacion_servicio(request.getParameter("value"));     
+
+        JSONObject js = new JSONObject();
+
+        int status = new DataAcces().delete(tb,"TbProgramacionServicios");        
+
+        if (status == OPERACION_EXITOSA) 
+            js.put("mensaje", TSERVICIO_PROGRAMADO_DEL_OK);
+        else 
+            js.put("mensaje", TSERVICIO_PROGRAMADO_DEL_FAIL);        
 
         return js;
     }

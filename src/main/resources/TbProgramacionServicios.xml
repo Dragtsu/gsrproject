@@ -40,5 +40,42 @@
         inner join servicios S on SP.id_servicio=S.id_servicio 
         where id_programacion_servicio like #{id_programacion_servicio}||'%'        
     </select>  
+    
+        <insert id="insert" parameterType="com.data.models.TbProgramacionServicios">
+        INSERT INTO servicios_programados 
+            (                
+                id_unidad,
+                id_servicio,                
+                sDescripcion_programacion,
+                dFecha_programada,
+                nCostoServicio,
+                bRealizado
+            )
+        VALUES 
+            (               
+                #{id_unidad},
+                #{id_servicio},
+                #{sDescripcion_programacion}, 
+                #{dFecha_programada},
+                #{nCostoServicio},
+                #{bRealizado}
+            );
+    </insert>
+    
+    <delete id="deleteById" parameterType="Integer">
+        DELETE from servicios_programados WHERE id_programacion_servicio = #{id_programacion_servicio};
+    </delete> 
+    
+     <update id="update" parameterType="com.data.models.TbProgramacionServicios">
+        UPDATE servicios_programados
+        SET                            
+                id_unidad =#{ id_unidad },
+                id_servicio =#{ id_servicio },              
+                sDescripcion_programacion =#{ sDescripcion_programacion },
+                dFecha_programada =#{ dFecha_programada },
+                nCostoServicio =#{ nCostoServicio  },
+                bRealizado =#{ bRealizado }
+        WHERE id_programacion_servicio = #{ id_programacion_servicio };
+    </update>  
 </mapper>
 

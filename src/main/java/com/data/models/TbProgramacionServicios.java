@@ -3,22 +3,24 @@ package com.data.models;
 import static com.data.configurations.StaticData.*;
 
 public class TbProgramacionServicios {
-    
-        
-private int id_programacion_servicio;
-private TbServicios servicio;
-private TbUnidad unidad;
-private String sDescripcion_programacion;
-private String dFecha_programada;
-private double nCostoServicio;
-private int bRealizado;
+
+    private int id_programacion_servicio;
+    private TbServicios servicio;
+    private TbUnidad unidad;
+    private String id_unidad;
+    private String sDescripcion_programacion;
+    private String dFecha_programada;
+    private double nCostoServicio;
+    private int bRealizado;
+    private int id_servicio;
 
     public int getId_programacion_servicio() {
         return id_programacion_servicio;
     }
 
-    public void setId_programacion_servicio(int id_programacion_servicio) {
-        this.id_programacion_servicio = id_programacion_servicio;
+    public void setId_programacion_servicio(String id_programacion_servicio) {
+
+        this.id_programacion_servicio = Integer.parseInt(id_programacion_servicio.replace(SUFIJO_ID_PROGRAMACION_SERVICIO, ""));
     }
 
     public String getsDescripcion_programacion() {
@@ -68,21 +70,36 @@ private int bRealizado;
     public void setUnidad(TbUnidad unidad) {
         this.unidad = unidad;
     }
-    
+
     public String[] toArray() {
-        
-        System.out.println("Convirtiendo array");
 
         return new String[]{
-        id_programacion_servicio+"",
-        servicio.getId_servicio()+"",
-        servicio.getNombre_servicio(),
-        unidad.getId_unidad(),
-        unidad.getsNombre(),
-        sDescripcion_programacion,
-        dFecha_programada,
-        formatoNumerico.format(nCostoServicio),        
-        (bRealizado==1)?"SI":"NO"};
+            SUFIJO_ID_PROGRAMACION_SERVICIO + id_programacion_servicio,
+            unidad.getId_unidad(),
+            unidad.getsNombre(),
+            SUFIJO_ID_SERVICIOMANTENIMIENTO + servicio.getId_servicio() + "",
+            servicio.getNombre_servicio(),
+            sDescripcion_programacion,
+            dFecha_programada,
+            formatoNumerico.format(nCostoServicio),
+            (bRealizado == 1) ? "SI" : "NO"};
     }
-    
+
+    public String getId_unidad() {
+        return id_unidad;
+    }
+
+    public void setId_unidad(String id_unidad) {
+        this.id_unidad = id_unidad;
+    }
+
+    public int getId_servicio() {
+        return id_servicio;
+    }
+
+    public void setId_servicio(String id_servicio) {
+
+        this.id_servicio = Integer.parseInt(id_servicio.replace(SUFIJO_ID_SERVICIOMANTENIMIENTO, ""));
+    }
+
 }

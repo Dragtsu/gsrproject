@@ -98,19 +98,19 @@ public class DataAcces {
         try {
             list = (ArrayList) session.selectList( tablaConsultar+".getAll",like );
         } catch (Exception e) {
-           System.out.println(e.toString());
+           System.out.println("*************  ERROR EN READ ******************\n"+e.toString());
         } finally {
             session.close();
         }
         return list;
     }
 
-    public Object readOne(String id) {
+    public Object readOne(String id,String tablaConsultar) {
 
         Object entidad = null;
 
         try {
-            entidad = (Object) session.selectOne("TbTrabajador.getById", id);
+            entidad = (Object) session.selectOne(tablaConsultar+".getById", id);
         } catch (Exception e) {
             logger.error(e.toString());
         } finally {

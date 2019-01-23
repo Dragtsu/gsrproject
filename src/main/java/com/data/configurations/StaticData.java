@@ -21,11 +21,14 @@ public class StaticData {
     public static final String JSPATH = "jsp/";
     
     public static DecimalFormat formatoNumerico = new DecimalFormat("#,###,###,##0.00");
+    public static final String SUFIJO_ID_SERVICIOMANTENIMIENTO = "SM";
+    public static final String SUFIJO_ID_PROGRAMACION_SERVICIO = "PS";
 
     public static final String TRABAJADOR = "Trabajador";
     public static final String UNIDAD = "Unidad";
     public static final String TIPO_SERVICIO = "Servicios";
     public static final String PROGRAMACION_SERVICIO = "ProgramacionServicios";
+    public static final String VIGENCIA_SERVICIO = "VigenciaServicios";
 
     public final static int OPERACION_EXITOSA = 0;
     public final static int REGISTRO_EXISTE = 1;
@@ -52,6 +55,13 @@ public class StaticData {
     public static final String TSERVICIO_UDATE_OK = "Datos del tipo del servicio modificados correctamente";
     public static final String TSERVICIO_DEL_OK="Servicio eliminado correctamente.";
     public static final String TSERVICIO_DEL_FAIL="Ocurrio un error al eliminar los datos del servicio.";  
+    
+    public static final String TSERVICIO_PROGRAMADO_OK = "Programación de servicio guardado";
+    public static final String TSERVICIO_PROGRAMADO_EXIST = "Ya existe ese servicio en agenda.";
+    public static final String TSERVICIO_PROGRAMADO_FAIL = "Ocurrió un error al guardar los datos del servicio programado.";
+    public static final String TSERVICIO_PROGRAMADO_UDATE_OK = "Datos del tipo del servicio programado modificados correctamente";
+    public static final String TSERVICIO_PROGRAMADO_DEL_OK="Servicio progamado eliminado correctamente.";
+    public static final String TSERVICIO_PROGRAMADO_DEL_FAIL="Ocurrio un error al eliminar los datos del servicio programado.";  
     
     
     

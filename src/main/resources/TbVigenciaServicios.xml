@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="TbVigenciaServicios">
+  
+    <resultMap id="TbVigenciaServiciosMap" type="com.data.models.TbVigenciaServicios">
+        <result property="tipo_servicio" column="tipo_servicio" jdbcType="VARCHAR" />
+        <result property="id" column="id" jdbcType="VARCHAR" />
+        <result property="descripcion" column="descripcion" jdbcType="VARCHAR" />   
+        <result property="vigencia" column="vigencia" jdbcType="VARCHAR" />  
+        <result property="dias_restantes" column="dias_restantes" jdbcType="VARCHAR" /> 
+        <result property="dias_vencidos" column="dias_vencidos" jdbcType="VARCHAR" />      
+    </resultMap>   
+    
+    <select id="getAll" parameterType="String" resultMap="TbVigenciaServiciosMap">       
+        
+        select 
+        'Licencia' tipo_servicio,
+        Num_Celular id,
+        Nombre || ' ' || Apellido_Paterno || ' ' ||  Apellido_Materno descripcion,
+        Vigencia_Licencia vigencia,
+        (
+        CASE 
+        WHEN ( strftime('%s',Vigencia_Licencia) - strftime('%s','now') )/60/60/24 <![CDATA[ >=0 ]]> THEN
+        (strftime('%s',Vigencia_Licencia) - strftime('%s','now') )/60/60/24
+        ELSE ''
+        END
+        )dias_restantes,
+        (
+        CASE 
+        WHEN ( strftime('%s',Vigencia_Licencia) - strftime('%s','now') )/60/60/24 <![CDATA[ < 0 ]]> THEN
+        ((strftime('%s',Vigencia_Licencia) - strftime('%s','now') )/60/60/24)*-1
+        ELSE ''
+        END
+        )dias_vencidos
+
+        from trabajador
+        where
+        ((strftime('%s',Vigencia_Licencia) - strftime('%s','now') )/60/60/24)<![CDATA[ <= 15 ]]>
+
+        
+        union
+
+        SELECT 
+        'Servicio' servicio,
+        'PS'|| id_programacion_servicio as id,
+        SPR.id_unidad || ' / ' ||  UN.sNombre || ' / ' ||  SR.sDescripcion descripcion,
+        dFecha_programada,
+        (
+        CASE 
+        WHEN strftime('%d/%m/%Y',dFecha_programada) - strftime('%d/%m/%Y','now') <![CDATA[ >= 0 ]]> THEN
+        strftime('%d/%m/%Y',dFecha_programada) - strftime('%d/%m/%Y','now')
+        ELSE ''
+        END
+        )Dias_Faltan,
+        (
+        CASE 
+        WHEN strftime('%d/%m/%Y',dFecha_programada) - strftime('%d/%m/%Y','now') <![CDATA[ < 0 ]]> THEN
+        (strftime('%d/%m/%Y',dFecha_programada) - strftime('%d/%m/%Y','now') )*-1
+        ELSE ''
+        END
+        )Dias_Retraso
+        from servicios_programados SPR inner join unidad UN on SPR.id_unidad=UN.id_unidad
+        inner join servicios SR on SPR.id_servicio=SR.id_servicio
+        where bRealizado <![CDATA[ = 0 ]]>
+        
+        
+    </select>
+    
+</mapper>

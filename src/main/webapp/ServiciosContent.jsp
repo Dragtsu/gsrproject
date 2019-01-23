@@ -1,10 +1,10 @@
-<div class="title">  <h4>Listado de servicios</h4></div>
+<div class="title">  <h4>Listado de servicios y mantenimiento</h4></div>
 <div>
     <fieldset class="form-inline">                        
 
         <form>
             <table>                                
-                <tr><td>Id Servicio:</td><td><input type="text" class="tm form-control" name="id_servicio"  value="SM" readOnly></td></tr>
+                <tr><td>Id Servicio:</td><td><input type="text" class="form-control" name="id_servicio" default="SM"  value="SM" readOnly></td></tr>
                 <tr><td>Nombre del Servicio:</td><td><input type="text" name="nombre_servicio" class="form-control" maxlength="30"></td></tr>
                 <tr><td>Descripcion:</td><td><textarea name="sDescripcion" id="sDescripcion" class="form-control" maxlength="100"></textarea></td></tr>
                  <tr><td>Costo del Servicio:</td><td><input  type="text" name="nCostoServicio" class="input-money form-control" maxlength="9"></td></tr>

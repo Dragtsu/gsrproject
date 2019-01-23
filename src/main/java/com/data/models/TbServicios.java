@@ -18,13 +18,13 @@ public class TbServicios {
     private String sDescripcion;
     private Double nCostoServicio;
 
-    private final String SufijoTipoMantenimiento = "SM";
+    
     
 
     public String[] toArray() {
         System.out.println("Convirtiendo array");
 
-        return new String[]{SufijoTipoMantenimiento + id_servicio, nombre_servicio, sDescripcion, formatoNumerico.format(nCostoServicio)};
+        return new String[]{SUFIJO_ID_SERVICIOMANTENIMIENTO + id_servicio, nombre_servicio, sDescripcion, formatoNumerico.format(nCostoServicio)};
 
     }
 
@@ -33,7 +33,7 @@ public class TbServicios {
     }
 
     public void setId_servicio(String id_servicio) {
-        this.id_servicio = Integer.parseInt(id_servicio.replace(SufijoTipoMantenimiento, ""));
+        this.id_servicio = Integer.parseInt(id_servicio.replace(SUFIJO_ID_SERVICIOMANTENIMIENTO, ""));
     }
 
     public String getNombre_servicio() {

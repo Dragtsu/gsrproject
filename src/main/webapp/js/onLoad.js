@@ -1,10 +1,21 @@
+
+var ColsDataTable = {
+    ProgramacionServicios: [0, 1, 3, 5, 6, 7, 8]
+};
+
 function limpiaFormulario() {
     $("form input:text").val("");
     $("#sDescripcion").val("");
     $("#sSearch").val("");
-    $(".tm").val("TM");
 
+    $.each($("form input:text"), function () {
 
+        if ($(this).attr("default") !== undefined || $(this).attr("default") !== "") {
+
+            $(this).val($(this).attr("default"));
+        }
+
+    });
 }
 
 //limpiaFormulario();
@@ -18,26 +29,34 @@ $('#sidebarCollapse').on('click', function () {
     $(this).toggleClass('active');
 });
 
+function muestraMensaje(mensaje) {
 
+    $("#textAlert").empty();
+    $("#textAlert").text(mensaje);
+    $("#alerta-modal").modal('show');
+    setTimeout(function () {
+        $("#cierraAlertaModal").click();
+    }, 2000);
+}
 
 $("#save").click(function () {
 
-    var blankValue = false;
+    var InputVacio = false;
 
     $("form input:text").each(function () {
 
         if ($.trim($(this).val()) === "") {
 
-            alert("El campo:\" " + $("form tr").eq($("form input:text").index($(this))).children().eq(0).html() + "\" debe ser rellenado.");
+            muestraMensaje("El campo:\" " + $("form tr").eq($("form input:text").index($(this))).children().eq(0).html() + "\" debe ser rellenado.");
 
-            blankValue = true;
+            InputVacio = true;
 
             return false;
         }
 
     });
 
-    if (blankValue)
+    if (InputVacio)
         return;
 
     $(".input-money").each(function () {
@@ -46,7 +65,7 @@ $("#save").click(function () {
 
         if (!regexp.test(this.value)) {
 
-            alert("Escriba un monto correcto");
+            muestraMensaje("Escriba un monto correcto");
             return false;
         }
 
@@ -64,7 +83,9 @@ $("#save").click(function () {
         data: $("form").serialize(),
         success: function (data)
         {
-            alert(data.mensaje);
+            //alert(data.mensaje);
+            muestraMensaje(data.mensaje);
+
             reloadTable();
             limpiaFormulario();
             $('.readOnly').prop('readonly', false);
@@ -77,7 +98,7 @@ $("#deleteBt").click(function () {
 
     if ($('.dataTablex').has(".selected").length == 0) {
 
-        alert("Debe seleccionar un registro");
+        muestraMensaje("Debe seleccionar un registro");
         return;
     }
 
@@ -89,7 +110,7 @@ $("#deleteBt").click(function () {
         data: {"table": $("#tableShow").val(), "value": $(".selected td:first-child").html()},
         success: function (data)
         {
-            alert(data.mensaje);
+            muestraMensaje(data.mensaje);
             reloadTable();
         }
     });
@@ -138,40 +159,64 @@ $('.dataTablex tbody').on('click', 'tr', function () {
     $(this).addClass('selected');
 });
 
+function editarFormulario(TagActual, ValorCelda) {
+ 
+    if ($(TagActual).is("input") || $(TagActual).is("textarea")) {
+
+        $(TagActual).val(ValorCelda);
+
+        if ($(TagActual).hasClass("input-money")) {
+
+            $(TagActual).val(($(TagActual).val().replace(/,/g, "")));
+        }
+    } else if ($(TagActual).is("select")) {
+
+        $(TagActual).children().filter(function () {
+            return $(this).text() === ValorCelda;
+
+        }).prop("selected", true);
+    }
+}
+
+
 $("#updateBt").click(function () {
 
     if ($('.dataTablex').has(".selected").length === 0) {
 
-        alert("Debe seleccionar un registro");
+        muestraMensaje("Debe seleccionar un registro");
         return;
     }
 
-    var currentElement;
+    var TagActual = null;
+    var columnasDataTable = null;
 
-    $('.selected td').each(function () {
+    $.each(ColsDataTable, function (index, value) {
 
-        currentElement = $('form input[type=text], textarea, select').eq($(this).index());
-
-        if ($(currentElement).is("input") || $(currentElement).is("textarea")) {
-            
-            $(currentElement).val($(this).html());
-            
-            if( $(currentElement).hasClass("input-money")){
-               
-                  $(currentElement).val(($(currentElement).val().replace(/,/g, "")));                
-            }
+        if ($.trim($("#tableShow").val()) === $.trim(index)) {
+            columnasDataTable = value;
         }
-        
-        else if ($(currentElement).is("select")) {
-
-            $(currentElement).children().filter(function () {
-                return $(this).text() === $(this).html();
-            }).prop("selected", true);
-        }
-
     });
 
-   
+
+    if (columnasDataTable === null)
+    {
+        $('.selected td').each(function () {
+
+            TagActual = $('form input[type=text], textarea, select').eq($(this).index());
+            editarFormulario(TagActual, $(this).html());
+        });
+    } else {
+
+        $.each(columnasDataTable, function (indexArray, CellIndex) {
+//alert( TagActual + " ----"+indexArray+"------"+$('.selected td').eq(CellIndex).html());
+            TagActual = $('form input[type=text], textarea, select').eq(indexArray);
+            editarFormulario( TagActual,  $('.selected td').eq(CellIndex).html() );
+            
+        });
+
+    }
+
+
 
     $("#cancelarBt").show();
     $('.readOnly').prop("readonly", true);
@@ -212,10 +257,10 @@ $(".bt-catalogo").click(function () {
         data: {"table": this.id},
         success: function (data)
         {
-            $(".modal-body").empty();
-            $(".modal-body").append(data.table);
-            $(".modal-body").append(data.input);
-            $(".modal-body").append(data.script);
+            $("#contenido-catalogo").empty();
+            $("#contenido-catalogo").append(data.table);
+            $("#contenido-catalogo").append(data.input);
+            $("#contenido-catalogo").append(data.script);
         }
     });
 
@@ -233,7 +278,7 @@ $.datepicker.regional['es'] = {
     dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
     dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
     weekHeader: 'Sm',
-    dateFormat: 'dd/mm/yy',
+    dateFormat: 'yy-mm-dd',
     firstDay: 1,
     isRTL: false,
     showMonthAfterYear: false,
@@ -248,3 +293,5 @@ $(".datepicker").datepicker({
 });
 
 $("input[type=button]").addClass("btn btn-primary");
+
+

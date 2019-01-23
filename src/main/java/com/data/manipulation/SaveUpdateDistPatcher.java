@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.data.manipulation;
 
 import com.data.models.TbTrabajador;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 import static com.data.configurations.StaticData.*;
+import com.data.models.TbProgramacionServicios;
 import com.data.models.TbServicios;
 import com.data.models.TbUnidad;
 
@@ -23,7 +18,7 @@ import com.data.models.TbUnidad;
  * @author dragneel
  */
 @WebServlet(name = "SavePatcher", urlPatterns = {"/api/save"})
-public class SavePatcher extends HttpServlet {
+public class SaveUpdateDistPatcher extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,6 +46,10 @@ public class SavePatcher extends HttpServlet {
          else if (paramValue.equals(TIPO_SERVICIO)) {
 
             enviaJsonServerSide(response, guardaServicio(request,save));
+        }
+         else if (paramValue.equals(PROGRAMACION_SERVICIO)) {
+
+            enviaJsonServerSide(response, guardaServicioProgramado(request,save));
         }
     }
 
@@ -147,6 +146,43 @@ public class SavePatcher extends HttpServlet {
             js.put("mensaje", TSERVICIO_EXIST);
         } else if (status == ERROR_GENERAL) {
             js.put("mensaje", TSERVICIO_FAIL);
+        }
+
+        return js;
+    }
+    
+    private JSONObject guardaServicioProgramado(HttpServletRequest request, boolean save) {
+
+        TbProgramacionServicios tbps = new TbProgramacionServicios();
+
+       // tbps.setId_programacion_servicio(Integer.parseInt(request.getParameter("id_programacion_servicio")));
+        tbps.setId_servicio(request.getParameter("id_servicio"));
+        tbps.setId_unidad(request.getParameter("id_unidad"));
+        tbps.setbRealizado(Integer.parseInt(request.getParameter("mantoRealizado")));
+        tbps.setdFecha_programada(request.getParameter("fProgramadaServicio"));
+        tbps.setnCostoServicio(Double.parseDouble(request.getParameter("nCostoServicioProgramado")));
+        tbps.setsDescripcion_programacion(request.getParameter("sDescripcion"));
+        
+
+        JSONObject js = new JSONObject();
+
+        int status;
+
+        if (request.getParameter("action").equals("save")) {
+            status = new DataAcces().insert(tbps, "TbProgramacionServicios");
+        } else {
+           tbps.setId_programacion_servicio(request.getParameter("id_programacion_servicio"));
+            status = new DataAcces().update(tbps, "TbProgramacionServicios");
+        }
+
+        if (status == OPERACION_EXITOSA && save) {
+            js.put("mensaje", TSERVICIO_PROGRAMADO_OK);
+        } else if (status == OPERACION_EXITOSA) {
+            js.put("mensaje", TSERVICIO_PROGRAMADO_UDATE_OK);
+        } else if (status == REGISTRO_EXISTE) {
+            js.put("mensaje", TSERVICIO_PROGRAMADO_EXIST);
+        } else if (status == ERROR_GENERAL) {
+            js.put("mensaje", TSERVICIO_PROGRAMADO_FAIL);
         }
 
         return js;

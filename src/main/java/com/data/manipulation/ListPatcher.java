@@ -21,6 +21,7 @@ import static com.data.configurations.StaticData.*;
 import com.data.models.TbProgramacionServicios;
 import com.data.models.TbServicios;
 import com.data.models.TbUnidad;
+import com.data.models.TbVigenciaServicios;
 
 /**
  *
@@ -62,6 +63,9 @@ public class ListPatcher extends HttpServlet {
             case PROGRAMACION_SERVICIO:
                 BatisMapper = "TbProgramacionServicios";
                 break;
+            case VIGENCIA_SERVICIO:
+                BatisMapper = "TbVigenciaServicios";
+                break;                   
             default:
                 break;
         }
@@ -85,6 +89,8 @@ public class ListPatcher extends HttpServlet {
             Return = ((TbServicios) obj).toArray();
         } else if (table.equals("TbProgramacionServicios")) {
             Return = ((TbProgramacionServicios) obj).toArray();
+        } else if (table.equals("TbVigenciaServicios")) {
+            Return = ((TbVigenciaServicios) obj).toArray();
         }
 
         return Return;

@@ -35,14 +35,14 @@
             h3, .white{
                 color: white;
             }
-            
+
             .title{
                 padding: 10px 10px 10px 10px;
                 margin: 10px 50px 0px 10px;
-                  
+
                 background-color: #e3e7ea;
             }
-            
+
             body{                
                 background-color: #f1f3f4;
             }
@@ -107,12 +107,13 @@
             $(document).ready(function () {
 
                 $('nav#menu').mmenu({
-                  /*  extensions: ["theme-dark"]*/
-                });
+                    /*  extensions: ["theme-dark"]*/
+                });              
 
                 $("submit").submit(function (e) {
                     e.preventDefault();
                 });
+                               
 
                 $(".link").click(function () {
 
@@ -126,12 +127,12 @@
                             $("#container").html(data);
                         }
                     });
-                    
-                    $("#inicio").click();
+
+                    $("nav#menu").data("mmenu").close();
 
                 });
-
-
+                
+                 $("#VigenciaServicios").click();
 
             });//Document ready
         </script>
@@ -149,48 +150,62 @@
                 <span class="white"> Usuario Invitado</span><span class="ui-icon ui-icon-caret-1-s"></span><span id="personIcon"></span>
             </div>
         </div>
-        
+
         <div  id="container" class="container">
 
             <nav id="menu">
                 <ul>
-                    <li><a id="inicio" href="#">Inicio</a></li>
+                    <li><a id="VigenciaServicios" class="link" href="#">Vigencia de Servicios</a>  </li>
                     <li><span>Unidad</span>
                         <ul>
                             <li><a id="Unidad" class="link" href="#">Unidades</a></li>
                             <li><a id="ProgramacionServicios" class="link" href="#">Programacion de Servicios</a></li>
                             <li><a id="Servicios" class="link" href="#">Servicios</a></li>
                         </ul>
-                    </li>
-                    <li><a id="Trabajador" class="link" href="#">Trabajador</a></li>
-                    <!--<li class="Divider">Other demos</li>-->
-                    <li><a id="AlertasProgramas" class="link" href="#">Alertas de programas</a>  </li>
+                    </li>                    
+                    <li class="Divider">Personal</li>
+                     <li><a id="Trabajador" class="link" href="#">Trabajador</a></li>
                     <li><a id="SalidaCampo" class="link" href="#">Salidas a Campo</a>   </li>
                 </ul>
-            </nav>
+            </nav>                      
+        </div> <!-- CONTAINER -->
 
-            <!-- MODAL -->
-            <div class="modal " id="catalogoModal" role="dialog"  aria-hidden="true">
-                <div class="modal-dialog modal-lg" >
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="tituloModal"></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">   
+        <!-- MODAL DATATABLES -->
+        <div class="modal " id="catalogoModal" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-lg" >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="tituloModal"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="contenido-catalogo">   
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button"  id="close_modal" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" id="catalog_row_accept" class="btn btn-primary">Aceptar</button>
-                            <input type="hidden"  id="modal-target" input-target=""   />
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"  id="close_modal" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="catalog_row_accept" class="btn btn-primary">Aceptar</button>
+                        <input type="hidden"  id="modal-target" input-target=""   />
                     </div>
                 </div>
-            </div> <!-- MODAL -->           
-        </div> <!-- CONTAINER -->
-        
+            </div>
+        </div> <!-- MODAL DATATABLES--> 
+
+        <!-- Modal Mensajes -->
+        <div id="alerta-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">               
+                <div class="modal-content">                  
+                    <div class="modal-body">
+                        <div class="alert alert-primary" id="mensaje-modal">                            
+                            <span id="textAlert">Mensaje</span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cierraAlertaModal" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- Modal mensajes -->
     </body>
 </html>
